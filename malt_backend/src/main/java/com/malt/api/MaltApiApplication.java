@@ -1,4 +1,4 @@
-package com.malt.api.malt_api;
+package com.malt.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

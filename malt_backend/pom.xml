@@ -33,11 +33,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.malt.antlr</groupId>
-			<artifactId>antlr</artifactId>
-			<version>3.4</version>
-			<scope>system</scope>
-			<systemPath>D:\Documenti\ANTLR\antlr-3.4-complete.jar</systemPath>
+    		<groupId>com.malt.grammar.launcher</groupId>
+   			<artifactId>maltgrammar</artifactId>
+    		<version>1.0</version>
 		</dependency>
 	</dependencies>
 
