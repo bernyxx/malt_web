@@ -2,6 +2,7 @@ package com.malt.api;
 
 import java.io.IOException;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.malt.grammar.launchers.MaltStringParserTester;
 import com.malt.grammar.launchers.MaltStringScannerTester;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class ApiController {
@@ -18,15 +20,15 @@ public class ApiController {
     MaltStringParserTester mpt = new MaltStringParserTester();
 
     @PostMapping("/launch-lexer")
-    public String launchLexer(@RequestBody MaltBody body) throws IOException {
+    public MaltBody launchLexer(@RequestBody MaltBody body) throws IOException {
         String result = mst.runScanner(body.getContent());
-        return result;
+        return new MaltBody(result);
 
     }
 
     @PostMapping("/launch-parser")
-    public String launchParser(@RequestBody MaltBody body) throws IOException {
+    public MaltBody launchParser(@RequestBody MaltBody body) throws IOException {
         String result = mpt.runParser(body.getContent());
-        return result;
+        return new MaltBody(result);
     }
 }
