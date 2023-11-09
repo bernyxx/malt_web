@@ -33,7 +33,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-    		<groupId>com.malt.grammar.launcher</groupId>
+    		<groupId>com.malt.grammar</groupId>
    			<artifactId>maltgrammar</artifactId>
     		<version>1.0</version>
 		</dependency>

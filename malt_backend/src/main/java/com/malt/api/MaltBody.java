@@ -1,12 +1,22 @@
 package com.malt.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class MaltBody {
 
-    public String content;
+    private String content;
 
-    public MaltBody(@JsonProperty("content") String cont) {
-        this.content = cont;
+    public MaltBody() {
+        this.content = "";
+    }
+
+    public MaltBody(String content) {
+        this.content = content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return this.content;
     }
 }
