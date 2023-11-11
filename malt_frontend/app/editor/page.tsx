@@ -16,6 +16,7 @@ import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SubmitButton from '../components/SubmitButton';
 import Link from 'next/link';
+import SymbolTable from '../components/SymbolTable';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -35,6 +36,8 @@ export default function MaltApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [response, setResponse] = useState('');
+  const [globalTable, setGlobalTable] = useState({});
+  const [functionsTable, setFunctionsTable] = useState({});
 
   function handleFileInput(e: React.FormEvent<HTMLLabelElement>) {
     let files = (e.target as HTMLInputElement).files;
@@ -82,9 +85,12 @@ export default function MaltApp() {
       });
 
       const data = await res.json();
+      console.log(data);
       setIsLoading(false);
 
       setResponse(data.content);
+      setGlobalTable(data.globalTable);
+      setFunctionsTable(data.functionsTable);
     } catch (e) {
       setIsLoading(false);
       setIsError(true);
@@ -177,6 +183,11 @@ export default function MaltApp() {
             <AlertTitle>Errore</AlertTitle>
             Impossibile comunicare con il server!
           </Alert>
+        ) : (
+          <Box />
+        )}
+        {Object.keys(globalTable).length != 0 ? (
+          <SymbolTable data={globalTable} />
         ) : (
           <Box />
         )}

@@ -1,14 +1,14 @@
 package com.malt.api;
 
-public class MaltBody {
+public class MaltRequestBody {
 
     private String content;
 
-    public MaltBody() {
+    public MaltRequestBody() {
         this.content = "";
     }
 
-    public MaltBody(String content) {
+    public MaltRequestBody(String content) {
         this.content = content;
     }
 
