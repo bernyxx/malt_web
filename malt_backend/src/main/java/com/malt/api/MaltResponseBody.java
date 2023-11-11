@@ -5,35 +5,35 @@ import java.util.Hashtable;
 import com.malt.grammar.compiler.util.VarDescriptor;
 
 public class MaltResponseBody {
-    private String content;
+    private String message;
     private Hashtable<String, VarDescriptor> globalTable;
     private Hashtable<String, Hashtable<String, VarDescriptor>> functionsTable;
 
     public MaltResponseBody() {
-        this.content = "";
+        this.message = "";
         this.globalTable = new Hashtable<>();
         this.functionsTable = new Hashtable<>();
     }
 
-    public MaltResponseBody(String content) {
-        this.content = content;
+    public MaltResponseBody(String message) {
+        this.message = message;
         this.globalTable = new Hashtable<>();
         this.functionsTable = new Hashtable<>();
     }
 
-    public MaltResponseBody(String content, Hashtable<String, VarDescriptor> globalTable,
+    public MaltResponseBody(String message, Hashtable<String, VarDescriptor> globalTable,
             Hashtable<String, Hashtable<String, VarDescriptor>> functionsTable) {
-        this.content = content;
+        this.message = message;
         this.globalTable = globalTable;
         this.functionsTable = functionsTable;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getContent() {
-        return this.content;
+    public String getMessage() {
+        return this.message;
     }
 
     public void setGlobalTable(Hashtable<String, VarDescriptor> globalTable) {
