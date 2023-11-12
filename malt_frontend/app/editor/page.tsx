@@ -20,7 +20,7 @@ import SubmitButton from '../components/SubmitButton';
 import Link from 'next/link';
 import GlobalTable from '../components/GlobalTable';
 import FunctionsTable from '../components/FunctionsTable';
-import { CleaningServices, Delete } from '@mui/icons-material';
+import { CleaningServices, Delete, FileOpen } from '@mui/icons-material';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -38,7 +38,8 @@ export default function MaltApp() {
   const [file, setFile] = useState<File>();
   const [code, setCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isApiError, setIsApiError] = useState(false);
+  const [isFileError, setIsFileError] = useState(false);
   const [response, setResponse] = useState('');
 
   const [showGlobalTable, setShowGlobalTable] = useState(false);
@@ -48,9 +49,11 @@ export default function MaltApp() {
   const [functionsTable, setFunctionsTable] = useState({});
 
   function cleanPage() {
+    setFile(undefined);
     setCode('');
     setIsLoading(false);
-    setIsError(false);
+    setIsApiError(false);
+    setIsFileError(false);
     setResponse('');
     setGlobalTable({});
     setFunctionsTable({});
@@ -58,8 +61,9 @@ export default function MaltApp() {
     setShowFunctionsTable(false);
   }
 
-  function handleFileInput(e: React.FormEvent<HTMLLabelElement>) {
-    let files = (e.target as HTMLInputElement).files;
+  function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
+    console.log('file input');
+    let files = e.target.files;
 
     if (files == null) {
       return;
@@ -73,21 +77,31 @@ export default function MaltApp() {
       setCode(fr.result as string);
     };
 
-    fr.readAsText(file);
+    const splittedFileName = file.name.split('.');
+    const ext = splittedFileName[splittedFileName.length - 1];
 
-    setFile(file);
-    console.log(file.type);
+    // reset the value of html input element to trigger onchange again even if you insert the same file
+    e.target.value = '';
+
+    if (ext === 'malt') {
+      fr.readAsText(file);
+      setFile(file);
+    } else {
+      setIsFileError(true);
+    }
   }
 
   function handleTextArea(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     setCode(e.target.value);
+    setIsFileError(false);
   }
 
   async function submitCode(isScanner: boolean) {
     try {
       // clean data from previous response
+
       setResponse('');
       setGlobalTable({});
       setFunctionsTable({});
@@ -98,11 +112,11 @@ export default function MaltApp() {
       setIsLoading(true);
 
       // clean previous error if happened
-      setIsError(false);
+      setIsApiError(false);
 
       const url = isScanner
-        ? 'http://127.0.0.1:8080/api/launch-lexer'
-        : 'http://127.0.0.1:8080/api/launch-parser';
+        ? 'http://127.0.0.1:8080/api/lexer'
+        : 'http://127.0.0.1:8080/api/parser';
 
       const res = await fetch(url, {
         cache: 'no-cache',
@@ -114,7 +128,6 @@ export default function MaltApp() {
       });
 
       const data = await res.json();
-      console.log(data);
       setIsLoading(false);
 
       setResponse(data.message);
@@ -122,7 +135,7 @@ export default function MaltApp() {
       setFunctionsTable(data.functionsTable);
     } catch (e) {
       setIsLoading(false);
-      setIsError(true);
+      setIsApiError(true);
       console.error('Errore richiesta HTTP');
     }
   }
@@ -163,11 +176,13 @@ export default function MaltApp() {
             <Button
               component='label'
               variant='outlined'
-              startIcon={<CloudUploadIcon />}
-              onChange={(e) => handleFileInput(e)}
+              startIcon={<FileOpen />}
             >
               Carica file
-              <VisuallyHiddenInput type='file' />
+              <VisuallyHiddenInput
+                type='file'
+                onChange={(e) => handleFileInput(e)}
+              />
             </Button>
           </Grid>
           <Grid item>
@@ -181,6 +196,15 @@ export default function MaltApp() {
             </Button>
           </Grid>
         </Grid>
+        {isFileError && (
+          <>
+            <Box height={20} />
+            <Alert severity='error' variant='outlined'>
+              <AlertTitle>Errore</AlertTitle>
+              Il file inserito non ha estensione .malt
+            </Alert>
+          </>
+        )}
 
         <Box height={40}></Box>
         <TextField
@@ -218,7 +242,7 @@ export default function MaltApp() {
           {isLoading ? (
             <CircularProgress />
           ) : (
-            !isError &&
+            !isApiError &&
             response.length != 0 && (
               <TextField
                 id='outlined-basic'
@@ -234,36 +258,34 @@ export default function MaltApp() {
             )
           )}
         </Box>
-        {isError && (
-          <Alert severity='error'>
+        {isApiError && (
+          <Alert severity='error' variant='outlined'>
             <AlertTitle>Errore</AlertTitle>
             Impossibile comunicare con il server!
           </Alert>
         )}
-        {Object.keys(globalTable).length != 0 &&
-          Object.keys(functionsTable).length != 0 && (
-            <>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => handleCheckbox(e, true)}
-                    checked={showGlobalTable}
-                  />
-                }
-                label='Mostra Tabella Globale'
+        {Object.keys(globalTable).length != 0 && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={(e) => handleCheckbox(e, true)}
+                checked={showGlobalTable}
               />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={(e) => handleCheckbox(e, false)}
-                    checked={showFunctionsTable}
-                  />
-                }
-                label='Mostra Tabelle Locali'
+            }
+            label='Mostra Tabella Globale'
+          />
+        )}
+        {Object.keys(functionsTable).length != 0 && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={(e) => handleCheckbox(e, false)}
+                checked={showFunctionsTable}
               />
-            </>
-          )}
-
+            }
+            label='Mostra Tabelle Locali'
+          />
+        )}
         {showGlobalTable && <GlobalTable data={globalTable} />}
         {showFunctionsTable && <FunctionsTable data={functionsTable} />}
       </Container>

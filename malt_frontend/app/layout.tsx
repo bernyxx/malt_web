@@ -2,7 +2,6 @@ import './globals.css';
 
 export const metadata = {
   title: 'MALT',
-  description: 'MALT Website',
 };
 
 export default function RootLayout({
@@ -32,7 +31,7 @@ export default function RootLayout({
         />
         <link rel='manifest' href='/site.webmanifest' />
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning={true}>{children}</body>
     </html>
   );
 }

@@ -20,14 +20,14 @@ public class ApiController {
     MaltStringScannerTester mst = new MaltStringScannerTester();
     MaltStringParserTester mpt = new MaltStringParserTester();
 
-    @PostMapping("/launch-lexer")
+    @PostMapping("/lexer")
     public MaltResponseBody launchLexer(@RequestBody MaltRequestBody body) throws IOException {
         String result = mst.runScanner(body.getContent());
         return new MaltResponseBody(result);
 
     }
 
-    @PostMapping("/launch-parser")
+    @PostMapping("/parser")
     public MaltResponseBody launchParser(@RequestBody MaltRequestBody body) throws IOException {
         ParserResult result = mpt.runParser(body.getContent());
         return new MaltResponseBody(result.parserResult, result.globalTable, result.functionsTable);
