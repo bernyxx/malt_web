@@ -1,0 +1,10 @@
+services:
+  web:
+    build: ./malt_frontend
+    ports:
+      - "5000:3000"
+
+  api:
+    build: ./malt_backend
+    ports:
+      - "8080:8080"
