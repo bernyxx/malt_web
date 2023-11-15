@@ -21,9 +21,9 @@ jobs:
       matrix:
         include:
           - image: malt_backend
-            dockerfile: ./malt_backend/Dockerfile
+            dockerfile: ./malt_backend
           - image: malt_frontend
-            dockerfile: ./malt_frontend/Dockerfile
+            dockerfile: ./malt_frontend
       
     steps:
       - name: Checkout repository
@@ -42,8 +42,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: .
-          file: ${{matrix.dockerfile}}
+          context: ${{matrix.dockerfile}}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
