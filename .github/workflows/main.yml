@@ -21,9 +21,9 @@ jobs:
       matrix:
         include:
           - image: malt_backend
-            dockerfile: /malt_backend
+            dockerfile: ./malt_backend
           - image: malt_frontend
-            dockerfile: /malt_frontend
+            dockerfile: ./malt_frontend
       
     steps:
       - name: Checkout repository
