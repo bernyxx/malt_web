@@ -62,7 +62,7 @@ export default function MaltApp() {
   }
 
   function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log('file input');
+    setIsFileError(false);
     let files = e.target.files;
 
     if (files == null) {
@@ -101,12 +101,11 @@ export default function MaltApp() {
   async function submitCode(isScanner: boolean) {
     try {
       // clean data from previous response
-
       setResponse('');
       setGlobalTable({});
       setFunctionsTable({});
-      setShowGlobalTable(false);
-      setShowFunctionsTable(false);
+      // setShowGlobalTable(false);
+      // setShowFunctionsTable(false);
 
       // new request, loading...
       setIsLoading(true);
@@ -128,8 +127,8 @@ export default function MaltApp() {
       });
 
       const data = await res.json();
-      setIsLoading(false);
 
+      setIsLoading(false);
       setResponse(data.message);
       setGlobalTable(data.globalTable);
       setFunctionsTable(data.functionsTable);
@@ -178,7 +177,7 @@ export default function MaltApp() {
               variant='outlined'
               startIcon={<FileOpen />}
             >
-              Carica file
+              Carica codice da file
               <VisuallyHiddenInput
                 type='file'
                 onChange={(e) => handleFileInput(e)}
@@ -209,7 +208,7 @@ export default function MaltApp() {
         <Box height={40}></Box>
         <TextField
           id='outlined-basic'
-          label='Testo'
+          label='Codice MALT'
           variant='outlined'
           multiline={true}
           fullWidth={true}
