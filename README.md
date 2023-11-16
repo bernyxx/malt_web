@@ -1,11 +1,15 @@
-# Sommario
-- [Sommario](#sommario)
-- [Introduzione](#introduzione)
-- [Installazione](#installazione)
-  - [Installazione tramite Docker](#installazione-tramite-docker)
+# Guida Utente MALT
+
+## Sommario
+- [Guida Utente MALT](#guida-utente-malt)
+  - [Sommario](#sommario)
+  - [Introduzione](#introduzione)
+  - [Installazione](#installazione)
+    - [Esecuzione da codice sorgente](#esecuzione-da-codice-sorgente)
+    - [Installazione tramite Docker](#installazione-tramite-docker)
 
 
-# Introduzione
+## Introduzione
 
 MALT è un linguaggio che consente di ottenere un file Markdown a partire da un nuovo linguaggio procedurale.
 
@@ -14,13 +18,35 @@ MALT permette di unire le funzionalità tipiche dei linguaggi di programmazione 
 
 Per poter eseguire il codice MALT è stata predisposta un’interfaccia web in cui è possibile scrivere direttamente oppure importare un file che contiene il codice che si vuole eseguire.
 
-# Installazione
+## Installazione
 
-Per installare l’ambiente che permette di eseguire il codice MALT sono disponibili diverse alternative.
+Per installare ed eseguire l’ambiente che permette di eseguire il codice MALT sono disponibili diverse alternative: l'esecuzione in modalità sviluppatore direttamente dagli script contenuti nel codice sorgente oppure l'esecuzione dell'ambiente pronto alla produzione tramite container Docker di immagini già costruite e pronte da utilizzare.
 
-## Installazione tramite Docker
+### Esecuzione da codice sorgente
 
-L’alternativa più semplice e veloce è quella di scaricare due immagini Docker e successivamente creare ed eseguire i container Docker costruiti a partire dalle immagini appena scaricate.
+Il metodo piu semplice per utilizzare l'ambiente è quello di eseguire gli script utilizzati per provare il programma durante la fase di sviluppo. Questa modalità però non permette di simulare un ambiente reale con tutte le ottimizzazioni che i framework usano dopo aver eseguito il "build".
+Il programma si divide in due parti: analizzatore (back-end) e interfaccia (front-end).
+
+>Per il front-end è stato utilizzato Next.js che richiede l'installazione di Node.js e di npm sul sistema. Per scaricare Node.js basta andare a [questo indirizzo](https://nodejs.org/en/download). L'installazione di Node.js solitamente già include npm.
+
+Per eseguire il back-end basta entrare nella cartella "malt_backend" e lanciare il comando 
+```shell
+./mvnw spring-boot:run
+```
+
+Verrà lanciato un server realizzato con spring-boot disponibile alla porta 8000.
+
+Per lanciare l'interfaccia invece basta entrare nella cartella "malt_frontend" ed eseguire il comando
+
+```shell
+npm run dev
+```
+
+Una volta avviato il front-end è possibile utilizzare l'interfaccia all'indirizzo <http://localhost:3000>
+
+
+### Installazione tramite Docker
+
 Le immagini Docker sono un modo pratico e veloce per creare dei container che contengono già tutto il codice e le dipendenze necessarie per eseguire l'ambiente MALT senza installare nulla oltre al motore Docker.
 
 > Per completare l'installazione tramite Docker è necessario avere Docker Engine installato sul proprio computer. Se non si è esperti con i comandi Docker all'interno del terminale si consiglia caldamente di installare l'interfaccia Docker Desktop che integra il sopracitato Docker Engine. I passaggi successivi della guida faranno riferimento all'interfaccia. La guida di installazione di Docker Desktop può essere trovata a questo [link](https://docs.docker.com/desktop/).
@@ -46,7 +72,7 @@ Fare la stessa cosa per l'immagine malt_frontend specificando questa volta una "
 
 Nella sezione "Containers" ora si potranno vedere i due container in esecuzione.
 
-L'installazione dell'ambiente è completata ed ora sarà possibile utilizzare l'interfaccia web all'url [localhost:PORT]() dove PORT è la "Host port" specificata nella creazione del container basato sull'immagine malt_frontend.
+L'installazione dell'ambiente è completata ed ora sarà possibile utilizzare l'interfaccia web all'url <localhost:PORT> dove PORT è la "Host port" specificata nella creazione del container basato sull'immagine malt_frontend.
 
 
 
