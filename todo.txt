@@ -1,0 +1,2 @@
+- gestione checkbox nelle tlist
+- controllo errori tabella
