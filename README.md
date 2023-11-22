@@ -15,20 +15,24 @@
     - [Variabili Lista](#variabili-lista)
     - [Variabili Multimediali](#variabili-multimediali)
   - [Variabili Primitive Testuali](#variabili-primitive-testuali-1)
-    - [Testo semplice (text)](#testo-semplice-text)
+    - [Testo semplice (*text*)](#testo-semplice-text)
     - [Titolo e varianti](#titolo-e-varianti)
-    - [Blocco citazione (Blockquote)](#blocco-citazione-blockquote)
-    - [Blocco di codice (Codeblock)](#blocco-di-codice-codeblock)
-  - [Variabili Lista](#variabili-lista-1)
-    - [Lista ordinata (olist)](#lista-ordinata-olist)
-    - [Lista non ordinata (ulist)](#lista-non-ordinata-ulist)
-    - [Lista con caselle di spunta (tlist)](#lista-con-caselle-di-spunta-tlist)
-    - [Lista (list)](#lista-list)
+    - [Blocco citazione (*blockquote*)](#blocco-citazione-blockquote)
+    - [Blocco di codice (*codeblock*)](#blocco-di-codice-codeblock)
+  - [Variabili lista](#variabili-lista-1)
+    - [Lista ordinata (*olist*)](#lista-ordinata-olist)
+    - [Lista non ordinata (*ulist*)](#lista-non-ordinata-ulist)
+    - [Lista con caselle di spunta (*tlist*)](#lista-con-caselle-di-spunta-tlist)
+    - [Lista (*list*)](#lista-list)
   - [Variabili Multimediali](#variabili-multimediali-1)
-    - [Tabella (table)](#tabella-table)
-    - [Link (link)](#link-link)
-    - [Immagine (img)](#immagine-img)
+    - [Tabella (*table*)](#tabella-table)
+    - [Link (*link*)](#link-link)
+    - [Immagine (*img*)](#immagine-img)
   - [Conversione tra Tipi (Type Casting)](#conversione-tra-tipi-type-casting)
+  - [Cicli](#cicli)
+    - [Ciclo for](#ciclo-for)
+    - [Ciclo for-each](#ciclo-for-each)
+  - [Scope delle variabili](#scope-delle-variabili)
 
 # Introduzione
 
@@ -48,7 +52,7 @@ Per installare ed eseguire l’ambiente che permette di eseguire il codice MALT 
 Il metodo piu semplice per utilizzare l'ambiente è quello di eseguire gli script utilizzati per provare il programma durante la fase di sviluppo. Questa modalità però non permette di simulare un ambiente reale con tutte le ottimizzazioni che i framework usano dopo aver eseguito il "build".
 Il programma si divide in due parti: analizzatore (back-end) e interfaccia (front-end).
 
-> Per il front-end è stato utilizzato Next.js che richiede l'installazione di Node.js e di npm sul sistema. Per scaricare Node.js basta andare a [questo indirizzo](https://nodejs.org/en/download). L'installazione di Node.js solitamente già include npm.
+> Per il front-end è stato utilizzato Next.js che richiede l'installazione di Node.js e di npm sul sistema. Per scaricare Node.js basta andare a [questo indirizzo](https://nodejs.org/en/download). L'installazione di Node.js solitamente include già npm.
 
 Per eseguire il back-end basta entrare nella cartella "malt_backend" e lanciare il comando
 
@@ -88,7 +92,7 @@ docker pull ghcr.io/kevin-bernardi/malt_frontend:main
 
 Se non ci sono stati errori durante il download delle immagini dovrebbero essere comparse due immagini nella sezione "Images" di Docker Desktop.
 
-Per creare ed eseguire i container, sempre dalla sezione Images fare click sul tasto "Play" in fondo alla riga dell'immagine malt_backend. Aprire la sezione "Optional settings" e inserire un nome a piacere nel campo "Container name" e inserire obbligatoriamente 8080 nel campo "Host port". Il resto va lasciato vuoto.
+Per creare ed eseguire i container, sempre dalla sezione "Images" fare click sul tasto "Play" in fondo alla riga dell'immagine malt_backend. Aprire la sezione "Optional settings", inserire un nome a piacere nel campo "Container name" e inserire obbligatoriamente 8080 nel campo "Host port". Il resto va lasciato vuoto.
 Fare la stessa cosa per l'immagine malt_frontend specificando questa volta una "Host port" a piacere.
 
 Nella sezione "Containers" ora si potranno vedere i due container in esecuzione.
@@ -115,15 +119,15 @@ text t = "sono un testo";
 
 Analizziamo parola per parola questa istruzione:
 
-- `text`: tipo della variabile. `text` rappresenta testo semplice (vedi sotto quali sono i tipi disponibili)
-- `t`: nome della variabile
-- `"sono un testo"`: valore assegnato alla variabile
+- *`text`*: tipo della variabile. *`text`* rappresenta testo semplice (vedi sotto quali sono i tipi disponibili)
+- *`t`*: nome della variabile
+- *`"sono un testo"`*: valore assegnato alla variabile
 
-Il simbolo '=' permette di assegnare il valore presente alla sua destra alla variabile presente alla sua sinistra.
+Il simbolo *`'='`* permette di assegnare il valore presente alla sua destra alla variabile presente alla sua sinistra.
 
-Ogni istruzione deve terminare con il simbolo ';'
+Ogni istruzione deve terminare con il simbolo *`';'`*
 
-Riassumendo, l'istruzione permette di assegnare il valore "sono un testo" alla variabile t di tipo text.
+Riassumendo, l'istruzione permette di assegnare il valore *`"sono un testo"`* alla variabile *`t`* di tipo text.
 
 Una sintassi alternativa consiste nell'assegnare il valore della variabile in un momento successivo rispetto alla sua dichiarazione al posto di fare tutto sulla stessa riga:
 
@@ -200,7 +204,7 @@ L'assegnamento per queste variabili funziona in questo modo:
 tipo_pr_test nome_var = "valore testuale";
 ```
 
-dove _`tipo_pr_test`_ è uno dei tipi elencati sopra.
+dove *`tipo_pr_test`* è uno dei tipi elencati sopra.
 
 > Per codeblock esiste un parametro opzionale in più che può essere inserito tra il tipo e il nome della variabile nella dichiarazione. Consulta la sezione dei codeblock per saperne di più.
 
@@ -208,27 +212,29 @@ Come già detto, l'assegnazione e la dichiarazione posso essere separate.
 
 Verranno ora presentati in dettaglio questi tipi.
 
-### Testo semplice (text)
+### Testo semplice (*text*)
 
-_`text`_ rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...
+*`text`* rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...
 
-In un text possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown.
+In un *`text`* possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown:
 
 - Grassetto: \*\* o \_\_ attorno al testo;
 - Corsivo: \* o \_ attorno al testo;
 - Grassetto e corsivo: \*\*\* o \_\_\_ attorno al testo.
 
-Ecco un esempio di un text con formattazione:
+Ecco un esempio di un *`text`* con formattazione:
 
 ```java
 text t = "*Stringa* **con** ***formattazione***";
 ```
 
-corrisponde in Markdown a: _Stringa_ **con** **_formattazione_**
+corrisponde in Markdown a:
+
+*Stringa* **con** ***formattazione***
 
 ### Titolo e varianti
 
-I tipi _`title`_, _`s1title`_, _`s2title`_, _`s3title`_, _`s4title`_, _`s5title`_ fanno parte della categoria dei titoli.
+I tipi *`title`*, *`s1title`*, *`s2title`*, *`s3title`*, *`s4title`*, *`s5title`* fanno parte della categoria dei titoli.
 
 Tra MALT e Markdown c'è la seguente corrispondenza:
 
@@ -241,9 +247,9 @@ Tra MALT e Markdown c'è la seguente corrispondenza:
 | s4title t = "Titolo"; | ##### titolo  |
 | s5title t = "Titolo"; | ###### titolo |
 
-### Blocco citazione (Blockquote)
+### Blocco citazione (*blockquote*)
 
-Un blockquote è un blocco di testo dove viene inserita una citazione o del testo importante che si deve notare.
+Un *`blockquote`* è un blocco di testo dove viene inserita una citazione o del testo importante che si deve notare.
 
 ```java
 blockquote bc = "Testo importante!";
@@ -255,12 +261,12 @@ corrisponde in Markdown a:
 
 che verrà mostrato come:
 
-> Testo Importante!
+> Testo importante!
 
-### Blocco di codice (Codeblock)
+### Blocco di codice (*codeblock*)
 
-Codeblock rappresenta un blocco di codice con supporto a syntax highlighting.
-La dichiarazione di un codeblock si differenzia dalle altre variabili primitive testuali per la presenza di un parametro opzionale nella dichiarazione.
+*`codeblock`* rappresenta un blocco di codice con supporto a syntax highlighting.
+La dichiarazione di un *`codeblock`* si differenzia dalle altre variabili primitive testuali per la presenza di un parametro opzionale nella dichiarazione.
 Questo parametro opzionale serve per specificare il linguaggio che viene scritto all'interno del blocco di codice per effettuare syntax highlighting in modo corretto.
 
 Ecco un esempio di un blocco di codice con codice Java al suo interno:
@@ -285,7 +291,7 @@ codeblock cb = "
 
 senza ovviamente utilizzare il syntax highlighting.
 
-## Variabili Lista
+## Variabili lista
 
 Vengono definite variabili lista tutte quelle variabili che hanno una lista di testi come valore.
 
@@ -293,10 +299,10 @@ Quindi, al contrario delle variabili primitive testuali, le variabili lista non 
 
 I tipi che definiscono le variabili lista sono le seguenti:
 
-- _`olist`_: lista ordinata
-- _`ulist`_: lista non ordinata
-- _`tlist`_: lista con casella di spunta
-- _`list`_: lista di stringhe
+- *`olist`*: lista ordinata
+- *`ulist`*: lista non ordinata
+- *`tlist`*: lista con casella di spunta
+- *`list`*: lista pura
 
 Tra i quattro tipi non ci sono differenze per quanto riguarda la loro dichiarazione o assegnamento.
 
@@ -313,20 +319,20 @@ olist lista_ordinata = ["uno", numero_due, "tre"];
 
 Andiamo a vedere più nel dettaglio i vari tipi per variabili lista.
 
-### Lista ordinata (olist)
+### Lista ordinata (*olist*)
 
 ```java
 olist animali = ["cane", "gatto", "coniglio", "gallina"];
 ```
 
-in Markdown viene trasformato in
+in Markdown viene trasformato in:
 
 1. cane
 2. gatto
 3. coniglio
 4. gallina
 
-### Lista non ordinata (ulist)
+### Lista non ordinata (*ulist*)
 
 ```java
 ulist frutta = ["mela", "pera", "pesca", "arancia"];
@@ -339,28 +345,33 @@ in Markdown viene trasformato in:
 - pesca
 - arancia
 
-### Lista con caselle di spunta (tlist)
+### Lista con caselle di spunta (*tlist*)
 
 ```java
-tlist cose_da_fare = ["pulire", "lavorare", "mangiare", "dormire"];
+tlist cose_da_fare = ["pulire", "_x_lavorare", "mangiare", "dormire"];
 ```
 
 in Markdown viene trasformato in:
 
 - [ ] pulire
-- [ ] lavorare
+- [x] lavorare
 - [ ] mangiare
 - [ ] dormire
 
-### Lista (list)
+Automaticamente, i valori della lista sono convertiti in righe senza spunta. 
 
-Rispetto alla _`olist`_, _`ulist`_ e _`tlist`_ la _`list`_ non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere una lista di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
+Aggiungendo il simbolo speciale *`_x_`* all'inizio della stringa viene visualizzata la spunta.
+
+
+### Lista (*list*)
+
+Rispetto alla _`olist`_, _`ulist`_ e _`tlist`_ la _`list`_ non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
 
 ## Variabili Multimediali
 
 Le variabili multimediali sono tre tipi di variabili che aggiungono elementi extra al documento Markdown: link, immagini e tabelle.
 
-### Tabella (table)
+### Tabella (*table*)
 
 Una tabella in MALT viene dichiarata e utilizzata nel modo seguente:
 
@@ -394,7 +405,7 @@ La prima lista corrisponde all'intestazione della tabella.
 
 > Tutte le liste devono avere la stessa lunghezza (non ci possono essere righe con un numero diverso di colonne dalle altre)
 
-### Link (link)
+### Link (*link*)
 
 Un link si definisce nel modo seguente:
 
@@ -412,7 +423,7 @@ un link che porta a Google)
 Il primo parametro è l'url dove in link deve reindirizzare.
 Il secondo paramentro è il testo visibile del link.
 
-### Immagine (img)
+### Immagine (*img*)
 
 Un'immagine si definisce come mostrato di seguito:
 
@@ -461,3 +472,86 @@ img foto3 = foto1;          // CONSENTITO: sia foto3 (tipo: img) che foto1 (tipo
 table tabella2 = foto3;     // ERRORE: tabella2 (tipo: table) e foto3 (tipo: img) sono entrambe multimediali ma non sono dello stesso tipo
 
 ```
+
+
+## Cicli
+
+In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripeteono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni sono proporzionali alla lunghezza della lista passata.
+
+### Ciclo for
+
+Il ciclo for permette di iterare le istruzioni in esso contenute un numero di volte pari al valore del contatore passato nella condizione.
+Ne viene fornito un breve esempio:
+
+```java
+text i;
+
+for(i, 3){
+
+  // istruzioni da ripetere
+
+}
+```
+
+In ciascuna iterazione del ciclo al contatore *`i`* viene assegnato un valore a partire da 0 e fino al valore *`3`* - 1 (valore massimo - 1).
+
+### Ciclo for-each
+
+Il ciclo for-each consente di eseguire le istruzioni contenute un numero di volte pari alla lunghezza della lista che si sta iterando.
+Inoltre, ad ogni iterazione si ha a disposizione il valore dell'elemento ccorrspondente della lista.
+Ecco un breve esempio:
+
+```java
+list lista_frutta = ["mela", "pera", "banana", "arancia"]; 
+text frutto;
+
+for(frutto in lista_frutta){
+
+  // istruzioni da ripetere
+
+}
+```
+
+Ad ogni iterazione la variabile *`frutto`* assumerà un valore diverso:
+- Prima iterazione: `mela`
+- Seconda iterazione: `pera`
+- Terza iterazione: `banana`
+- Quarta iterazione: `arancia`
+
+Il valore della variabile *`frutto`* potrà poi essere utilizzata per effettuare altre operazioni.
+
+
+## Scope delle variabili
+
+Lo scope di una variabile definisce l'area in cui quella variabile è valida, definita e visibile.
+
+In MALT non esistono parole chiave per estendere o limitare lo scope.
+
+Lo scope di una variabile si estende sempre a partire dalla dichiarazione fino all'ultima istruzione del blocco dove è stata dichiarata.
+
+Fino ad ora sono definibili solo due possibili blocchi: il blocco globale e il blocco del ciclo for.
+
+Il blocco globale è un blocco sempre presente e si estende per tutto il codice.
+Il blocco del ciclo for è invece definito da un ciclo for e si estende per tutte le istruzioni ripetute dal ciclo for.
+
+```java
+// inizio blocco globale
+text testo_globale;
+
+for(i, 5){
+  // inizio blocco del ciclo for
+  text testo_locale;
+
+  // altre istruzioni...
+
+  //fine blocco del ciclo for
+}
+
+// fine blocco globale
+```
+
+Nell'esempio la variabile *`testo_globale`* è definita nel blocco globale ed è visibile in tutto il codice (dopo la dichiarazione).
+
+La variabile *`testo_locale`* è invece definita nel blocco del ciclo for ed è visibile soltanto all'interno del ciclo dopo la dichiarazione della variabile.
+
+Per questo motivo le variabili dichiarate fuori dai cicli vengono definite "globali" mentre le variabili dichiarate nei cicli vengono definite "locali".

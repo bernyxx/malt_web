@@ -1,2 +1,4 @@
+- arricchire documentazione formattazione testo
 - gestione checkbox nelle tlist
 - controllo errori tabella
+- cambiare valore di un elemento di una lista
