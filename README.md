@@ -24,7 +24,7 @@
     - [Lista non ordinata (*ulist*)](#lista-non-ordinata-ulist)
     - [Lista con caselle di spunta (*tlist*)](#lista-con-caselle-di-spunta-tlist)
     - [Lista (*list*)](#lista-list)
-  - [Variabili Multimediali](#variabili-multimediali-1)
+  - [Variabili multimediali](#variabili-multimediali-1)
     - [Tabella (*table*)](#tabella-table)
     - [Link (*link*)](#link-link)
     - [Immagine (*img*)](#immagine-img)
@@ -33,6 +33,9 @@
     - [Ciclo for](#ciclo-for)
     - [Ciclo for-each](#ciclo-for-each)
   - [Scope delle variabili](#scope-delle-variabili)
+  - [Funzioni (*fun*)](#funzioni-fun)
+    - [Scope delle variabili in una funzione](#scope-delle-variabili-in-una-funzione)
+  - [Classi (*class*)](#classi-class)
 
 # Introduzione
 
@@ -306,7 +309,7 @@ I tipi che definiscono le variabili lista sono le seguenti:
 
 Tra i quattro tipi non ci sono differenze per quanto riguarda la loro dichiarazione o assegnamento.
 
-All'interno della lista possono esserci soltanto stringhe o variabili primitive testuali che verranno risolte in stringhe.
+All'interno della lista possono esserci soltanto stringhe o variabili primitive testuali, che a loro volta verranno risolte in stringhe.
 
 Ecco un esempio:
 
@@ -365,11 +368,11 @@ Aggiungendo il simbolo speciale *`_x_`* all'inizio della stringa viene visualizz
 
 ### Lista (*list*)
 
-Rispetto alla _`olist`_, _`ulist`_ e _`tlist`_ la _`list`_ non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
+Rispetto a *`olist`*, *`ulist`* e *`tlist`*, la *`list`* non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
 
-## Variabili Multimediali
+## Variabili multimediali
 
-Le variabili multimediali sono tre tipi di variabili che aggiungono elementi extra al documento Markdown: link, immagini e tabelle.
+Le variabili multimediali sono tre tipi di variabili che permettono di aggiungere elementi extra al documento Markdown: link, immagini e tabelle.
 
 ### Tabella (*table*)
 
@@ -386,7 +389,7 @@ che viene traformata in Markdown come:
 | quattro | cinque |  sei |
 | sette   |  otto  | nove |
 
-La dichiarazione è simila a quanto visto fino ad ora: prima dell'uguale viene dichiarata una variabile tabella di tipo table.
+La dichiarazione è simile a quanto visto fino ad ora: prima dell'uguale viene dichiarata una variabile *`tabella`* di tipo *`table`*.
 
 Il valore assegnato è invece composto da due parti.
 La prima parte è una lista che deve contenere un numero di specificatori pari al numero di colonne della tabella.
@@ -413,14 +416,16 @@ Un link si definisce nel modo seguente:
 link link1 =l ("https://google.it", "Google");
 ```
 
-corrisponde in Markdown a: [Google](https://www.google.it/)
+corrisponde in Markdown a:
 
-(Questo link potrebbe non funzionare in alcuni formati di visualizzazione. Dove funziona, corrisponde ad
+[Google](https://www.google.it/)
+
+(Questo link potrebbe non funzionare in alcuni formati di visualizzazione. Nei casi in cui funziona, corrisponde ad
 un link che porta a Google)
 
 > N.B. Per l'assegnamento di link si utilizza `=l` invece di `=`
 
-Il primo parametro è l'url dove in link deve reindirizzare.
+Il primo parametro è l'url a cui il link deve reindirizzare.
 Il secondo paramentro è il testo visibile del link.
 
 ### Immagine (*img*)
@@ -434,7 +439,7 @@ img foto_web =i ("https://sitofoto.com/foto_albero.png", "Didascalia immagine we
 
 > N.B. Per l'assegnamento di immagini si utilizza `=i` invece di `=`
 
-Il primo parametro è un percorso locale se si desidera utilizzare un'immagine presente sul computer. Se si desidera utilizzare un'immagine non locale si può inserire l'url della foto come nella seconda riga dell'esempio.
+Il primo parametro è un percorso locale se si desidera utilizzare un'immagine presente sul computer. Mentre se si desidera utilizzare un'immagine non locale, si può inserire l'url della foto come nella seconda riga dell'esempio.
 
 Il secondo parametro permette di specificare una discalia dell'immagine.
 
@@ -442,7 +447,7 @@ Il secondo parametro permette di specificare una discalia dell'immagine.
 
 MALT è un linguaggio abbastanza libero nella compatibilità tra tipi diversi e la conversione è sempre **implicita**.
 
-La conversione tra tipi è consentita solamente tra tipi della stessa categoria se la categoria è testuale primitiva o lista.
+La conversione tra tipi è consentita solamente tra tipi della stessa categoria se la categoria è primitiva testuale o lista.
 
 Le variabili di tipo multimediale rappresentano oggetti troppo diversi per avere un qualche tipo di conversione che funzioni quindi l'assegnamento su queste variabili funziona solo quando il loro tipo è identico.
 
@@ -476,7 +481,7 @@ table tabella2 = foto3;     // ERRORE: tabella2 (tipo: table) e foto3 (tipo: img
 
 ## Cicli
 
-In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripeteono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni sono proporzionali alla lunghezza della lista passata.
+In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripeteono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni corrispondono alla lunghezza della lista. Il contatore e la lista vanno passati nella codnzione nei rispettivi casi.
 
 ### Ciclo for
 
@@ -498,7 +503,7 @@ In ciascuna iterazione del ciclo al contatore *`i`* viene assegnato un valore a 
 ### Ciclo for-each
 
 Il ciclo for-each consente di eseguire le istruzioni contenute un numero di volte pari alla lunghezza della lista che si sta iterando.
-Inoltre, ad ogni iterazione si ha a disposizione il valore dell'elemento ccorrspondente della lista.
+Inoltre, ad ogni iterazione si ha a disposizione il valore dell'elemento corrispondente della lista.
 Ecco un breve esempio:
 
 ```java
@@ -518,7 +523,7 @@ Ad ogni iterazione la variabile *`frutto`* assumerà un valore diverso:
 - Terza iterazione: `banana`
 - Quarta iterazione: `arancia`
 
-Il valore della variabile *`frutto`* potrà poi essere utilizzata per effettuare altre operazioni.
+Il valore della variabile *`frutto`* potrà poi essere utilizzato per effettuare altre operazioni.
 
 
 ## Scope delle variabili
@@ -555,3 +560,129 @@ Nell'esempio la variabile *`testo_globale`* è definita nel blocco globale ed è
 La variabile *`testo_locale`* è invece definita nel blocco del ciclo for ed è visibile soltanto all'interno del ciclo dopo la dichiarazione della variabile.
 
 Per questo motivo le variabili dichiarate fuori dai cicli vengono definite "globali" mentre le variabili dichiarate nei cicli vengono definite "locali".
+
+## Funzioni (*fun*)
+
+In MALT si possono definire delle funzioni utilizzando la notazione utilizzata nel seguente esempio:
+
+```java
+fun esempio (text tx, title tl) {
+  // altre istruzioni...
+
+  return tx;
+}
+```
+Nella funzione dell'esempio si hanno 2 argomenti, ma essi potrebbero anche non essere presenti oppure potrebbero essere uno o più.
+
+Anche l'istruzione con *`return`* può essere opzionale, ma essa consente di restituire in output il valore di una variabile (nell'esempio la variabile *`tx`* di tipo *`text`*) oppure direttamente una stringa.
+
+Una volta creata una funzione globale, essa può essere chiamata come nel prossimo esempio. Questa chiamata può avvenire seguendo due vincoli:
+
+1. Si deve avere un numero di parametri nella chiamata pari al numero di argomenti della funzione;
+
+2. Ciascun parametro della chiamata deve presentare un tipo uguale o convertibile a quello del rispettivo argomento della funzione.
+
+```java
+text tx1 = "Testo";
+title tl1 = "Titolo";
+
+// definizione della funzione "esempio"
+fun esempio (text tx, title tl) {
+  //altre istruzioni...
+
+  return tx;
+}
+
+esempio(tx1,tl1); // chiamata della funzione "esempio"
+```
+
+### Scope delle variabili in una funzione
+
+Anche per le funzioni, così come per i cicli for visti prima, viene creato un blocco. Lo scope delle variabili dichiarate all'interno della funzione si estende a partire dalla dichiarazione fino all'ultima istruzione del blocco.
+
+Di seguito viene ostratao unesempio:
+
+```java
+// inizio blocco globale
+
+text t1 = "TestoGlobale";
+for(i, 3){
+  // inizio blocco for
+
+  text t1f = "TestoGlobaleFor";
+  // ...
+
+  // fine blocco for
+}
+
+fun esempio (text tx, title tl) {
+  // inizio blocco della funzione "esempio"
+
+  text t2 = "TestoLocale";
+  for(i, 3){
+    // inizio blocco for
+
+    text t2f = "TestoLocaleFor";
+    // ...
+
+    // fine blocco for  
+  }
+  
+
+  return tx;
+  
+  // fine blocco della funzione "esempio"
+}
+
+// fine blocco globale
+```
+
+La variabile *`t1`* è globale e quindi risulta sempre visibile. Invece la variabile *`t1f`*, poichè è stata definita all'interno di un ciclo for, risulta visibile soltanto nel ciclo stesso e di conseguenza è locale al for.
+Le precedenti considerazioni cambiano leggermente per le variabili *`t2`* e *`t2f`* siccome sono state definite in due livelli diversi all'interno di una funzione. La variabile *`t2`* è stata definita all'interno della funzione *`esempio`* e quindi risulta visibile solo nella funzione (variabile locale alla funzione). Invece la variabile *`t2f`*, poichè è stata definita in un ciclo for a sua volta all'interno di una funzione, risulta visibile soltanto nello specifico ciclo for della funzione *`esempio`* (variabile locale al ciclo for della funzione).
+
+## Classi (*class*)
+MALT consente di definire anche delle classi. Questo è possibile tramite la notazione del seguente esempio:
+
+```java
+class esempioClasse {
+  // altre istruzioni...
+
+  return tx;
+}
+```
+
+In una classe si possono definire anche funzioni (in questo caso esse prenderanno il nome di "metodi della classe").
+Una volta definito un metodo in una classe, questo metodo può essere chiamato utilizzando la dot notation in due livelli distinti della classe: al suo interno oppure esternamente alla classe.
+
+Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave *this* seguita dal nome del metodo. Ne viene riportato un esempio
+
+```java
+class Obj {
+  text txlocal = "Testo locale";
+  title tllocal = "Titolo locale";
+  fun print (text tx, title tl) {
+    //altre istruzioni...
+
+    return tx;
+  }
+
+  this.print(txlocal,tllocal);
+}
+```
+
+Invece, nel caso in cui si volesse chiamare il metodo all'esterno della classe in cui è stato definito, la chiamata prevede l'utilizzo del nome della classe seguito del nome del metodo. Un esempio di questa chiamata è riportato di seguito:
+
+```java
+text txglobal = "Testo globale";
+title tlglobal = "Titolo globale";
+
+class Obj {
+  fun print (text tx, title tl) {
+    //altre istruzioni...
+
+    return tx;
+  }
+}
+
+Obj.print(txglobal,tlglobal);
+```
