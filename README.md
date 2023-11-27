@@ -16,6 +16,9 @@
     - [Variabili Multimediali](#variabili-multimediali)
   - [Variabili Primitive Testuali](#variabili-primitive-testuali-1)
     - [Testo semplice (*text*)](#testo-semplice-text)
+      - [Grassetto e corsivo](#grassetto-e-corsivo)
+      - [Testo cancellato e evidenziato](#testo-cancellato-e-evidenziato)
+      - [Pedici e apici](#pedici-e-apici)
     - [Titolo e varianti](#titolo-e-varianti)
     - [Blocco citazione (*blockquote*)](#blocco-citazione-blockquote)
     - [Blocco di codice (*codeblock*)](#blocco-di-codice-codeblock)
@@ -219,13 +222,13 @@ Verranno ora presentati in dettaglio questi tipi.
 
 *`text`* rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...
 
-In un *`text`* possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown:
+In un *`text`* possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown.
+
+#### Grassetto e corsivo
 
 - Grassetto: \*\* o \_\_ attorno al testo;
 - Corsivo: \* o \_ attorno al testo;
-- Grassetto e corsivo: \*\*\* o \_\_\_ attorno al testo.
-
-Ecco un esempio di un *`text`* con formattazione:
+- Grassetto e corsivo: \*\*\* o \_\_\_ attorno al testo;
 
 ```java
 text t = "*Stringa* **con** ***formattazione***";
@@ -234,6 +237,38 @@ text t = "*Stringa* **con** ***formattazione***";
 corrisponde in Markdown a:
 
 *Stringa* **con** ***formattazione***
+
+#### Testo cancellato e evidenziato
+
+- Testo cancellato: ~~ attorno al testo;
+- Testo evidenziato: == attorno al testo;
+
+```java
+text t = "~~Testo cancellato~~ e ==testo evidenziato==";
+```
+
+corrisponde in Markdown a:
+
+~~Testo cancellato~~ e <mark>testo evidenziato</mark>
+
+#### Pedici e apici
+
+- Pedice: \~ attorno al pedice;
+- Apice: \^ attorno all'apice;
+
+```java
+text t1 = "Formula bruta del glucosio: C ~6~ H ~12~ O ~6~";
+text t2 = "Isotopi dell'idrogeno: prozio ^1^H, deuterio ^2^H, trizio ^3^H";
+
+// gli spazi attorno ai simboli ~ e ^ non sono necessari
+```
+
+corrispondono in Markdown a:
+
+Formula bruta del glucosio: C<sub>6</sub> H<sub>12</sub> O<sub>6</sub>
+
+Isotopi dell'idrogeno: prozio <sup>1</sup>H, deuterio <sup>2</sup>H, trizio <sup>3</sup>H
+
 
 ### Titolo e varianti
 
@@ -472,7 +507,7 @@ tlist tl = ul;              // CONSENTITO: sia tl (tipo: tlist) che ul (tipo: ul
 table tabella = testo;      // ERRORE: tabella (tipo: table) è multimediale mentre testo (tipo: text) è primitiva testuale
 img foto = cb;              // ERRORE: foto (tipo: img) è multimediale mentre cb (tipo: codeblock) è primitiva testuale
 img foto2 =i ("/img/foto.png", "Foto");
-img foto3 = foto1;          // CONSENTITO: sia foto3 (tipo: img) che foto1 (tipo: img) sono dello stesso tipo
+img foto3 = foto2;          // CONSENTITO: sia foto3 (tipo: img) che foto2 (tipo: img) sono dello stesso tipo
 
 table tabella2 = foto3;     // ERRORE: tabella2 (tipo: table) e foto3 (tipo: img) sono entrambe multimediali ma non sono dello stesso tipo
 
@@ -641,18 +676,30 @@ La variabile *`t1`* è globale e quindi risulta sempre visibile. Invece la varia
 Le precedenti considerazioni cambiano leggermente per le variabili *`t2`* e *`t2f`* siccome sono state definite in due livelli diversi all'interno di una funzione. La variabile *`t2`* è stata definita all'interno della funzione *`esempio`* e quindi risulta visibile solo nella funzione (variabile locale alla funzione). Invece la variabile *`t2f`*, poichè è stata definita in un ciclo for a sua volta all'interno di una funzione, risulta visibile soltanto nello specifico ciclo for della funzione *`esempio`* (variabile locale al ciclo for della funzione).
 
 ## Classi (*class*)
-MALT consente di definire anche delle classi. Questo è possibile tramite la notazione del seguente esempio:
+MALT consente di definire delle classi. Questo è possibile tramite la notazione del seguente esempio:
 
 ```java
-class esempioClasse {
-  // altre istruzioni...
+class ClasseEsempio {
 
-  return tx;
+  text campo1;
+  text campo2;
+
+  fun metodo1 (text t1){
+    // ...
+  }
+
+  fun metodo2 (){
+    // ...
+  }
+
+  // ...
+  
 }
 ```
+In una classe si possono definire campi e metodi. I campi non sono altro che variabili locali alla classe e quindi visibili solo all'interno di essa.
+I metodi sono delle funzioni legate alla classe. Le variabili definite al loro interno seguono le stesse regole di visibilità di una normale funzione. 
 
-In una classe si possono definire anche funzioni (in questo caso esse prenderanno il nome di "metodi della classe").
-Una volta definito un metodo in una classe, questo metodo può essere chiamato utilizzando la dot notation in due livelli distinti della classe: al suo interno oppure esternamente alla classe.
+I metodi hanno inoltre accesso ai campi ma sono visibili globalmente e quindi possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.
 
 Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave *this* seguita dal nome del metodo. Ne viene riportato un esempio
 
@@ -666,8 +713,12 @@ class Obj {
     return tx;
   }
 
-  this.print(txlocal,tllocal);
+  this.print(txlocal,tllocal);  // chiama la funzione print sopra
 }
+
+text txglobal;
+
+this.print(txglobal, txglobal);  // ERRORE!, non siamo all'interno della classe del metodo print
 ```
 
 Invece, nel caso in cui si volesse chiamare il metodo all'esterno della classe in cui è stato definito, la chiamata prevede l'utilizzo del nome della classe seguito del nome del metodo. Un esempio di questa chiamata è riportato di seguito:
@@ -686,3 +737,7 @@ class Obj {
 
 Obj.print(txglobal,tlglobal);
 ```
+
+> Se si proviene da un linguaggio orientato agli oggetti è importante notare che al contrario di questi, in MALT non è possibile creare oggetti chiamando il costruttore della classe. In questo linguaggio, la classe fa solo da "collezione" di variabili (campi) e funzioni (metodi). Inoltre i campi sono sempre e solo locali alla classe (visibiità "private") e i metodi sono sempre e solo pubblici e accessibili ovunque (visibilità "public").
+
+> In MALT, non esistendo il concetto di oggetto, non esiste nemmeno il concetto di costruttore / distruttore.
