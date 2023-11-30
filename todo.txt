@@ -1,0 +1,4 @@
+- aggiungere push e remove
+- refRule sui titoli
+- cosa può e non può contenere un nome di variabile
+- spiegare meglio valori string assegnati a var prim test

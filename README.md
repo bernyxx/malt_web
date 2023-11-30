@@ -10,35 +10,39 @@
   - [Installazione tramite Docker](#installazione-tramite-docker)
 - [Linguaggio MALT](#linguaggio-malt)
   - [Variabili](#variabili)
+  - [Commenti](#commenti)
   - [Tipi](#tipi)
     - [Variabili Primitive Testuali](#variabili-primitive-testuali)
     - [Variabili Lista](#variabili-lista)
     - [Variabili Multimediali](#variabili-multimediali)
-  - [Variabili Primitive Testuali](#variabili-primitive-testuali-1)
-    - [Testo semplice (*text*)](#testo-semplice-text)
+  - [Variabili primitive testuali](#variabili-primitive-testuali-1)
+    - [Testo semplice (_text_)](#testo-semplice-text)
       - [Grassetto e corsivo](#grassetto-e-corsivo)
       - [Testo cancellato e evidenziato](#testo-cancellato-e-evidenziato)
       - [Pedici e apici](#pedici-e-apici)
     - [Titolo e varianti](#titolo-e-varianti)
-    - [Blocco citazione (*blockquote*)](#blocco-citazione-blockquote)
-    - [Blocco di codice (*codeblock*)](#blocco-di-codice-codeblock)
+    - [Blocco citazione (_blockquote_)](#blocco-citazione-blockquote)
+    - [Blocco di codice (_codeblock_)](#blocco-di-codice-codeblock)
+    - [Concatenazione di variabili primitive testuali](#concatenazione-di-variabili-primitive-testuali)
   - [Variabili lista](#variabili-lista-1)
-    - [Lista ordinata (*olist*)](#lista-ordinata-olist)
-    - [Lista non ordinata (*ulist*)](#lista-non-ordinata-ulist)
-    - [Lista con caselle di spunta (*tlist*)](#lista-con-caselle-di-spunta-tlist)
-    - [Lista (*list*)](#lista-list)
+    - [Lista ordinata (_olist_)](#lista-ordinata-olist)
+    - [Lista non ordinata (_ulist_)](#lista-non-ordinata-ulist)
+    - [Lista con caselle di spunta (_tlist_)](#lista-con-caselle-di-spunta-tlist)
+    - [Lista (_list_)](#lista-list)
   - [Variabili multimediali](#variabili-multimediali-1)
-    - [Tabella (*table*)](#tabella-table)
-    - [Link (*link*)](#link-link)
-    - [Immagine (*img*)](#immagine-img)
+    - [Tabella (_table_)](#tabella-table)
+    - [Link (_link_)](#link-link)
+    - [Immagine (_img_)](#immagine-img)
+  - [Format](#format)
+    - [Specificatori di stringa](#specificatori-di-stringa)
   - [Conversione tra Tipi (Type Casting)](#conversione-tra-tipi-type-casting)
   - [Cicli](#cicli)
     - [Ciclo for](#ciclo-for)
     - [Ciclo for-each](#ciclo-for-each)
   - [Scope delle variabili](#scope-delle-variabili)
-  - [Funzioni (*fun*)](#funzioni-fun)
+  - [Funzioni (_fun_)](#funzioni-fun)
     - [Scope delle variabili in una funzione](#scope-delle-variabili-in-una-funzione)
-  - [Classi (*class*)](#classi-class)
+  - [Classi (_class_)](#classi-class)
 
 # Introduzione
 
@@ -125,15 +129,15 @@ text t = "sono un testo";
 
 Analizziamo parola per parola questa istruzione:
 
-- *`text`*: tipo della variabile. *`text`* rappresenta testo semplice (vedi sotto quali sono i tipi disponibili)
-- *`t`*: nome della variabile
-- *`"sono un testo"`*: valore assegnato alla variabile
+- _`text`_: tipo della variabile. _`text`_ rappresenta testo semplice (vedi sotto quali sono i tipi disponibili)
+- _`t`_: nome della variabile
+- _`"sono un testo"`_: valore assegnato alla variabile
 
-Il simbolo *`'='`* permette di assegnare il valore presente alla sua destra alla variabile presente alla sua sinistra.
+Il simbolo _`'='`_ permette di assegnare il valore presente alla sua destra alla variabile presente alla sua sinistra.
 
-Ogni istruzione deve terminare con il simbolo *`';'`*
+Ogni istruzione deve terminare con il simbolo _`';'`_
 
-Riassumendo, l'istruzione permette di assegnare il valore *`"sono un testo"`* alla variabile *`t`* di tipo text.
+Riassumendo, l'istruzione permette di assegnare il valore _`"sono un testo"`_ alla variabile _`t`_ di tipo text.
 
 Una sintassi alternativa consiste nell'assegnare il valore della variabile in un momento successivo rispetto alla sua dichiarazione al posto di fare tutto sulla stessa riga:
 
@@ -143,6 +147,23 @@ text t;
 // ALTRO CODICE...
 
 t = "testo";
+```
+
+## Commenti
+
+MALT permette di inserire sia commenti su un'unica riga sia commenti multilinea.
+
+Nel primo caso la notazione è:
+
+```java
+// commenti...
+```
+
+Invece nel caso di commenti multilinea serve scrivere:
+
+```java
+/* commenti...
+commenti... */
 ```
 
 ## Tipi
@@ -186,7 +207,7 @@ I tipi sono organizzati in 3 diverse categorie che verranno esposte di seguito.
 
 Nei successivi paragrafi verrà spiegato l'utilizzo di tutti i tipi appena elencati.
 
-## Variabili Primitive Testuali
+## Variabili primitive testuali
 
 Vengono definite variabili primitive testuali tutte quelle variabili che contengono direttamente una stringa di testo. Il tipo `text` visto prima ne è un esempio.
 
@@ -210,7 +231,7 @@ L'assegnamento per queste variabili funziona in questo modo:
 tipo_pr_test nome_var = "valore testuale";
 ```
 
-dove *`tipo_pr_test`* è uno dei tipi elencati sopra.
+dove _`tipo_pr_test`_ è uno dei tipi elencati sopra.
 
 > Per codeblock esiste un parametro opzionale in più che può essere inserito tra il tipo e il nome della variabile nella dichiarazione. Consulta la sezione dei codeblock per saperne di più.
 
@@ -218,11 +239,11 @@ Come già detto, l'assegnazione e la dichiarazione posso essere separate.
 
 Verranno ora presentati in dettaglio questi tipi.
 
-### Testo semplice (*text*)
+### Testo semplice (_text_)
 
-*`text`* rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...
+_`text`_ rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...
 
-In un *`text`* possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown.
+In un _`text`_ possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown.
 
 #### Grassetto e corsivo
 
@@ -236,7 +257,7 @@ text t = "*Stringa* **con** ***formattazione***";
 
 corrisponde in Markdown a:
 
-*Stringa* **con** ***formattazione***
+_Stringa_ **con** **_formattazione_**
 
 #### Testo cancellato e evidenziato
 
@@ -269,10 +290,9 @@ Formula bruta del glucosio: C<sub>6</sub> H<sub>12</sub> O<sub>6</sub>
 
 Isotopi dell'idrogeno: prozio <sup>1</sup>H, deuterio <sup>2</sup>H, trizio <sup>3</sup>H
 
-
 ### Titolo e varianti
 
-I tipi *`title`*, *`s1title`*, *`s2title`*, *`s3title`*, *`s4title`*, *`s5title`* fanno parte della categoria dei titoli.
+I tipi _`title`_, _`s1title`_, _`s2title`_, _`s3title`_, _`s4title`_, _`s5title`_ fanno parte della categoria dei titoli.
 
 Tra MALT e Markdown c'è la seguente corrispondenza:
 
@@ -285,9 +305,9 @@ Tra MALT e Markdown c'è la seguente corrispondenza:
 | s4title t = "Titolo"; | ##### titolo  |
 | s5title t = "Titolo"; | ###### titolo |
 
-### Blocco citazione (*blockquote*)
+### Blocco citazione (_blockquote_)
 
-Un *`blockquote`* è un blocco di testo dove viene inserita una citazione o del testo importante che si deve notare.
+Un _`blockquote`_ è un blocco di testo dove viene inserita una citazione o del testo importante che si deve notare.
 
 ```java
 blockquote bc = "Testo importante!";
@@ -301,15 +321,15 @@ che verrà mostrato come:
 
 > Testo importante!
 
-### Blocco di codice (*codeblock*)
+### Blocco di codice (_codeblock_)
 
-*`codeblock`* rappresenta un blocco di codice con supporto a syntax highlighting.
-La dichiarazione di un *`codeblock`* si differenzia dalle altre variabili primitive testuali per la presenza di un parametro opzionale nella dichiarazione.
+_`codeblock`_ rappresenta un blocco di codice con supporto a syntax highlighting.
+La dichiarazione di un _`codeblock`_ si differenzia dalle altre variabili primitive testuali per la presenza di un parametro opzionale nella dichiarazione.
 Questo parametro opzionale serve per specificare il linguaggio che viene scritto all'interno del blocco di codice per effettuare syntax highlighting in modo corretto.
 
 Ecco un esempio di un blocco di codice con codice Java al suo interno:
 
-```
+```java
 codeblock java cb = "
   public class Malt {
     public static void main(String[] args) {
@@ -321,13 +341,31 @@ codeblock java cb = "
 
 Visto che il parametro per la specifica del linguaggio è opzionale avremmo anche potuto scrivere
 
-```
+```java
 codeblock cb = "
   ....
 ";
 ```
 
 senza ovviamente utilizzare il syntax highlighting.
+
+### Concatenazione di variabili primitive testuali
+
+In MALT è possibile eseguire la concatenazione di più variabili primitive testali (sia tramite il nome di queste variabili sia tramite il loro valore) durante un assegnamento seguendo la notazione del seguente esempio:
+
+```java
+text t1 = ("zero" + "zero"); // t1 vale "zero zero"
+
+text s = "uno";
+text t2 = (s + "due"); // t2 vale "uno due"
+
+blockquote p = "tre";
+s3title t3 = (s + p); // t3 vale "uno tre"
+// tutti i tipi primitivi testuali possono essere utilizzati in una concatenazione
+// MALT converte autometicamente i tipi
+// Ulteriori dettagli sulla conversione dei tipi è spiegata nell'apposito paragrafo
+// più avanti
+```
 
 ## Variabili lista
 
@@ -337,10 +375,10 @@ Quindi, al contrario delle variabili primitive testuali, le variabili lista non 
 
 I tipi che definiscono le variabili lista sono le seguenti:
 
-- *`olist`*: lista ordinata
-- *`ulist`*: lista non ordinata
-- *`tlist`*: lista con casella di spunta
-- *`list`*: lista pura
+- _`olist`_: lista ordinata
+- _`ulist`_: lista non ordinata
+- _`tlist`_: lista con casella di spunta
+- _`list`_: lista pura
 
 Tra i quattro tipi non ci sono differenze per quanto riguarda la loro dichiarazione o assegnamento.
 
@@ -357,7 +395,7 @@ olist lista_ordinata = ["uno", numero_due, "tre"];
 
 Andiamo a vedere più nel dettaglio i vari tipi per variabili lista.
 
-### Lista ordinata (*olist*)
+### Lista ordinata (_olist_)
 
 ```java
 olist animali = ["cane", "gatto", "coniglio", "gallina"];
@@ -370,7 +408,7 @@ in Markdown viene trasformato in:
 3. coniglio
 4. gallina
 
-### Lista non ordinata (*ulist*)
+### Lista non ordinata (_ulist_)
 
 ```java
 ulist frutta = ["mela", "pera", "pesca", "arancia"];
@@ -383,7 +421,7 @@ in Markdown viene trasformato in:
 - pesca
 - arancia
 
-### Lista con caselle di spunta (*tlist*)
+### Lista con caselle di spunta (_tlist_)
 
 ```java
 tlist cose_da_fare = ["pulire", "_x_lavorare", "mangiare", "dormire"];
@@ -396,20 +434,19 @@ in Markdown viene trasformato in:
 - [ ] mangiare
 - [ ] dormire
 
-Automaticamente, i valori della lista sono convertiti in righe senza spunta. 
+Automaticamente, i valori della lista sono convertiti in righe senza spunta.
 
-Aggiungendo il simbolo speciale *`_x_`* all'inizio della stringa viene visualizzata la spunta.
+Aggiungendo il simbolo speciale _`\_x_`\_ all'inizio della stringa viene visualizzata la spunta.
 
+### Lista (_list_)
 
-### Lista (*list*)
-
-Rispetto a *`olist`*, *`ulist`* e *`tlist`*, la *`list`* non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
+Rispetto a _`olist`_, _`ulist`_ e _`tlist`_, la _`list`_ non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
 
 ## Variabili multimediali
 
 Le variabili multimediali sono tre tipi di variabili che permettono di aggiungere elementi extra al documento Markdown: link, immagini e tabelle.
 
-### Tabella (*table*)
+### Tabella (_table_)
 
 Una tabella in MALT viene dichiarata e utilizzata nel modo seguente:
 
@@ -424,7 +461,7 @@ che viene traformata in Markdown come:
 | quattro | cinque |  sei |
 | sette   |  otto  | nove |
 
-La dichiarazione è simile a quanto visto fino ad ora: prima dell'uguale viene dichiarata una variabile *`tabella`* di tipo *`table`*.
+La dichiarazione è simile a quanto visto fino ad ora: prima dell'uguale viene dichiarata una variabile _`tabella`_ di tipo _`table`_.
 
 Il valore assegnato è invece composto da due parti.
 La prima parte è una lista che deve contenere un numero di specificatori pari al numero di colonne della tabella.
@@ -443,7 +480,7 @@ La prima lista corrisponde all'intestazione della tabella.
 
 > Tutte le liste devono avere la stessa lunghezza (non ci possono essere righe con un numero diverso di colonne dalle altre)
 
-### Link (*link*)
+### Link (_link_)
 
 Un link si definisce nel modo seguente:
 
@@ -463,7 +500,7 @@ un link che porta a Google)
 Il primo parametro è l'url a cui il link deve reindirizzare.
 Il secondo paramentro è il testo visibile del link.
 
-### Immagine (*img*)
+### Immagine (_img_)
 
 Un'immagine si definisce come mostrato di seguito:
 
@@ -477,6 +514,36 @@ img foto_web =i ("https://sitofoto.com/foto_albero.png", "Didascalia immagine we
 Il primo parametro è un percorso locale se si desidera utilizzare un'immagine presente sul computer. Mentre se si desidera utilizzare un'immagine non locale, si può inserire l'url della foto come nella seconda riga dell'esempio.
 
 Il secondo parametro permette di specificare una discalia dell'immagine.
+
+## Format
+
+In MALT è stato introdotto un nuovo tipo di istruzione che consente di formattare diverse parole presenti nello stesso testo in base a diversi specificatori. Un esempio di questa istruzione è:
+
+```java
+text str = "MALT è %i nuovo %b di programmazione.";
+text a = "un";
+text b = "linguaggio";
+format(res,str,a,b)
+```
+
+che consente di ottenere:
+
+MALT è _un_ nuovo **linguaggio** di programmazione.
+
+Nella format del precedente esempio _`str`_ rappresenta la stringa da formattare, mentre _`res`_ corrisponde alla variabile in cui salvare il risultato di format. Invece _`a`_ e _`b`_ sono le variabili che vanno sostituite agli specificatori presenti in _`str`_ seguendo l'ordine in cui sono riportati.
+
+> Il numero di specificatori nella stringa da formattare deve corrispondere al numero di variabili riportati nella format (esclusi gli argomenti del risultato e della stringa da formattare).
+
+### Specificatori di stringa
+
+Gli specificatori di stringa sono 4:
+
+| Specificatore | Descrizione                  |
+| ------------- | ---------------------------- |
+| `%b`          | Testo in grassetto           |
+| `%i`          | Testo in corsivo             |
+| `%ib`         | Testo in grassetto e corsivo |
+| `%t`          | Testo senza formattazione    |
 
 ## Conversione tra Tipi (Type Casting)
 
@@ -513,7 +580,6 @@ table tabella2 = foto3;     // ERRORE: tabella2 (tipo: table) e foto3 (tipo: img
 
 ```
 
-
 ## Cicli
 
 In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripeteono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni corrispondono alla lunghezza della lista. Il contatore e la lista vanno passati nella codnzione nei rispettivi casi.
@@ -533,7 +599,7 @@ for(i, 3){
 }
 ```
 
-In ciascuna iterazione del ciclo al contatore *`i`* viene assegnato un valore a partire da 0 e fino al valore *`3`* - 1 (valore massimo - 1).
+In ciascuna iterazione del ciclo al contatore _`i`_ viene assegnato un valore a partire da 0 e fino al valore _`3`_ - 1 (valore massimo - 1).
 
 ### Ciclo for-each
 
@@ -542,7 +608,7 @@ Inoltre, ad ogni iterazione si ha a disposizione il valore dell'elemento corrisp
 Ecco un breve esempio:
 
 ```java
-list lista_frutta = ["mela", "pera", "banana", "arancia"]; 
+list lista_frutta = ["mela", "pera", "banana", "arancia"];
 text frutto;
 
 for(frutto in lista_frutta){
@@ -552,14 +618,14 @@ for(frutto in lista_frutta){
 }
 ```
 
-Ad ogni iterazione la variabile *`frutto`* assumerà un valore diverso:
+Ad ogni iterazione la variabile _`frutto`_ assumerà un valore diverso:
+
 - Prima iterazione: `mela`
 - Seconda iterazione: `pera`
 - Terza iterazione: `banana`
 - Quarta iterazione: `arancia`
 
-Il valore della variabile *`frutto`* potrà poi essere utilizzato per effettuare altre operazioni.
-
+Il valore della variabile _`frutto`_ potrà poi essere utilizzato per effettuare altre operazioni.
 
 ## Scope delle variabili
 
@@ -590,13 +656,13 @@ for(i, 5){
 // fine blocco globale
 ```
 
-Nell'esempio la variabile *`testo_globale`* è definita nel blocco globale ed è visibile in tutto il codice (dopo la dichiarazione).
+Nell'esempio la variabile _`testo_globale`_ è definita nel blocco globale ed è visibile in tutto il codice (dopo la dichiarazione).
 
-La variabile *`testo_locale`* è invece definita nel blocco del ciclo for ed è visibile soltanto all'interno del ciclo dopo la dichiarazione della variabile.
+La variabile _`testo_locale`_ è invece definita nel blocco del ciclo for ed è visibile soltanto all'interno del ciclo dopo la dichiarazione della variabile.
 
 Per questo motivo le variabili dichiarate fuori dai cicli vengono definite "globali" mentre le variabili dichiarate nei cicli vengono definite "locali".
 
-## Funzioni (*fun*)
+## Funzioni (_fun_)
 
 In MALT si possono definire delle funzioni utilizzando la notazione utilizzata nel seguente esempio:
 
@@ -607,9 +673,10 @@ fun esempio (text tx, title tl) {
   return tx;
 }
 ```
+
 Nella funzione dell'esempio si hanno 2 argomenti, ma essi potrebbero anche non essere presenti oppure potrebbero essere uno o più.
 
-Anche l'istruzione con *`return`* può essere opzionale, ma essa consente di restituire in output il valore di una variabile (nell'esempio la variabile *`tx`* di tipo *`text`*) oppure direttamente una stringa.
+Anche l'istruzione con _`return`_ può essere opzionale, ma essa consente di restituire in output il valore di una variabile (nell'esempio la variabile _`tx`_ di tipo _`text`_) oppure direttamente una stringa.
 
 Una volta creata una funzione globale, essa può essere chiamata come nel prossimo esempio. Questa chiamata può avvenire seguendo due vincoli:
 
@@ -660,22 +727,23 @@ fun esempio (text tx, title tl) {
     text t2f = "TestoLocaleFor";
     // ...
 
-    // fine blocco for  
+    // fine blocco for
   }
-  
+
 
   return tx;
-  
+
   // fine blocco della funzione "esempio"
 }
 
 // fine blocco globale
 ```
 
-La variabile *`t1`* è globale e quindi risulta sempre visibile. Invece la variabile *`t1f`*, poichè è stata definita all'interno di un ciclo for, risulta visibile soltanto nel ciclo stesso e di conseguenza è locale al for.
-Le precedenti considerazioni cambiano leggermente per le variabili *`t2`* e *`t2f`* siccome sono state definite in due livelli diversi all'interno di una funzione. La variabile *`t2`* è stata definita all'interno della funzione *`esempio`* e quindi risulta visibile solo nella funzione (variabile locale alla funzione). Invece la variabile *`t2f`*, poichè è stata definita in un ciclo for a sua volta all'interno di una funzione, risulta visibile soltanto nello specifico ciclo for della funzione *`esempio`* (variabile locale al ciclo for della funzione).
+La variabile _`t1`_ è globale e quindi risulta sempre visibile. Invece la variabile _`t1f`_, poichè è stata definita all'interno di un ciclo for, risulta visibile soltanto nel ciclo stesso e di conseguenza è locale al for.
+Le precedenti considerazioni cambiano leggermente per le variabili _`t2`_ e _`t2f`_ siccome sono state definite in due livelli diversi all'interno di una funzione. La variabile _`t2`_ è stata definita all'interno della funzione _`esempio`_ e quindi risulta visibile solo nella funzione (variabile locale alla funzione). Invece la variabile _`t2f`_, poichè è stata definita in un ciclo for a sua volta all'interno di una funzione, risulta visibile soltanto nello specifico ciclo for della funzione _`esempio`_ (variabile locale al ciclo for della funzione).
 
-## Classi (*class*)
+## Classi (_class_)
+
 MALT consente di definire delle classi. Questo è possibile tramite la notazione del seguente esempio:
 
 ```java
@@ -693,15 +761,16 @@ class ClasseEsempio {
   }
 
   // ...
-  
+
 }
 ```
+
 In una classe si possono definire campi e metodi. I campi non sono altro che variabili locali alla classe e quindi visibili solo all'interno di essa.
-I metodi sono delle funzioni legate alla classe. Le variabili definite al loro interno seguono le stesse regole di visibilità di una normale funzione. 
+I metodi sono delle funzioni legate alla classe. Le variabili definite al loro interno seguono le stesse regole di visibilità di una normale funzione.
 
 I metodi hanno inoltre accesso ai campi ma sono visibili globalmente e quindi possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.
 
-Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave *this* seguita dal nome del metodo. Ne viene riportato un esempio
+Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave _this_ seguita dal nome del metodo. Ne viene riportato un esempio
 
 ```java
 class Obj {
