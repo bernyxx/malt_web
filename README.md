@@ -17,18 +17,23 @@
     - [Variabili Multimediali](#variabili-multimediali)
   - [Variabili primitive testuali](#variabili-primitive-testuali-1)
     - [Testo semplice (_text_)](#testo-semplice-text)
-      - [Grassetto e corsivo](#grassetto-e-corsivo)
-      - [Testo cancellato e evidenziato](#testo-cancellato-e-evidenziato)
-      - [Pedici e apici](#pedici-e-apici)
     - [Titolo e varianti](#titolo-e-varianti)
+      - [Identificativo del titolo](#identificativo-del-titolo)
     - [Blocco citazione (_blockquote_)](#blocco-citazione-blockquote)
     - [Blocco di codice (_codeblock_)](#blocco-di-codice-codeblock)
     - [Concatenazione di variabili primitive testuali](#concatenazione-di-variabili-primitive-testuali)
+    - [Formattazione di variabili primitive testuali](#formattazione-di-variabili-primitive-testuali)
+      - [Grassetto e corsivo](#grassetto-e-corsivo)
+      - [Testo cancellato e evidenziato](#testo-cancellato-e-evidenziato)
+      - [Pedici e apici](#pedici-e-apici)
   - [Variabili lista](#variabili-lista-1)
     - [Lista ordinata (_olist_)](#lista-ordinata-olist)
     - [Lista non ordinata (_ulist_)](#lista-non-ordinata-ulist)
     - [Lista con caselle di spunta (_tlist_)](#lista-con-caselle-di-spunta-tlist)
     - [Lista (_list_)](#lista-list)
+    - [Manipolazione di una lista](#manipolazione-di-una-lista)
+      - [Aggiungere un elemento in coda (_push_)](#aggiungere-un-elemento-in-coda-push)
+      - [Rimuovere un elemento (_remove_)](#rimuovere-un-elemento-remove)
   - [Variabili multimediali](#variabili-multimediali-1)
     - [Tabella (_table_)](#tabella-table)
     - [Link (_link_)](#link-link)
@@ -133,11 +138,15 @@ Analizziamo parola per parola questa istruzione:
 - _`t`_: nome della variabile
 - _`"sono un testo"`_: valore assegnato alla variabile
 
-Il simbolo _`'='`_ permette di assegnare il valore presente alla sua destra alla variabile presente alla sua sinistra.
+> Il nome della variabile deve iniziare con una lettera e può contenere solo lettere, numeri e underscore (\_).
+
+Il simbolo _`'='`_ permette di assegnare il valore presente dopo il simbolo di uguaglianza alla variabile presente prima del simbolo.
 
 Ogni istruzione deve terminare con il simbolo _`';'`_
 
 Riassumendo, l'istruzione permette di assegnare il valore _`"sono un testo"`_ alla variabile _`t`_ di tipo text.
+
+Il valore assegnabile ad una variabile dipende dal suo tipo.
 
 Una sintassi alternativa consiste nell'assegnare il valore della variabile in un momento successivo rispetto alla sua dichiarazione al posto di fare tutto sulla stessa riga:
 
@@ -209,7 +218,11 @@ Nei successivi paragrafi verrà spiegato l'utilizzo di tutti i tipi appena elenc
 
 ## Variabili primitive testuali
 
-Vengono definite variabili primitive testuali tutte quelle variabili che contengono direttamente una stringa di testo. Il tipo `text` visto prima ne è un esempio.
+Vengono definite variabili primitive testuali tutte quelle variabili a cui sono assegnabili direttamente una stringa di testo. Il tipo `text` visto prima ne è un esempio.
+
+Le stringhe di testo possono contenere lettere, numeri, simboli, spazi, ...
+
+Le stringhe devono essere racchiuse da doppie virgolette (").
 
 L'aggettivo "primitive" si riferisce al fatto che questi tipi possono contenere una ed una sola stringa di testo e non ad esempio una lista di stringhe o una tabella che contiene stringhe.
 
@@ -245,51 +258,6 @@ _`text`_ rappresenta del testo semplice, tutto quello che non è un titolo, una 
 
 In un _`text`_ possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown.
 
-#### Grassetto e corsivo
-
-- Grassetto: \*\* o \_\_ attorno al testo;
-- Corsivo: \* o \_ attorno al testo;
-- Grassetto e corsivo: \*\*\* o \_\_\_ attorno al testo;
-
-```java
-text t = "*Stringa* **con** ***formattazione***";
-```
-
-corrisponde in Markdown a:
-
-_Stringa_ **con** **_formattazione_**
-
-#### Testo cancellato e evidenziato
-
-- Testo cancellato: ~~ attorno al testo;
-- Testo evidenziato: == attorno al testo;
-
-```java
-text t = "~~Testo cancellato~~ e ==testo evidenziato==";
-```
-
-corrisponde in Markdown a:
-
-~~Testo cancellato~~ e <mark>testo evidenziato</mark>
-
-#### Pedici e apici
-
-- Pedice: \~ attorno al pedice;
-- Apice: \^ attorno all'apice;
-
-```java
-text t1 = "Formula bruta del glucosio: C ~6~ H ~12~ O ~6~";
-text t2 = "Isotopi dell'idrogeno: prozio ^1^H, deuterio ^2^H, trizio ^3^H";
-
-// gli spazi attorno ai simboli ~ e ^ non sono necessari
-```
-
-corrispondono in Markdown a:
-
-Formula bruta del glucosio: C<sub>6</sub> H<sub>12</sub> O<sub>6</sub>
-
-Isotopi dell'idrogeno: prozio <sup>1</sup>H, deuterio <sup>2</sup>H, trizio <sup>3</sup>H
-
 ### Titolo e varianti
 
 I tipi _`title`_, _`s1title`_, _`s2title`_, _`s3title`_, _`s4title`_, _`s5title`_ fanno parte della categoria dei titoli.
@@ -304,6 +272,14 @@ Tra MALT e Markdown c'è la seguente corrispondenza:
 | s3title t = "Titolo"; | #### titolo   |
 | s4title t = "Titolo"; | ##### titolo  |
 | s5title t = "Titolo"; | ###### titolo |
+
+#### Identificativo del titolo
+
+È inoltre possibile aggiungere un identificativo al titolo inserendo {`{#id}`} tra il nome della variabile e il simbolo "=" come in questo esempio:
+
+```java
+s1title titolo {#titolo} = "Titolo con identificativo";
+```
 
 ### Blocco citazione (_blockquote_)
 
@@ -366,6 +342,55 @@ s3title t3 = (s + p); // t3 vale "uno tre"
 // Ulteriori dettagli sulla conversione dei tipi è spiegata nell'apposito paragrafo
 // più avanti
 ```
+
+### Formattazione di variabili primitive testuali
+
+Il valore delle variabili primitive testuali può essere formattato seguendo le regole di Markdown.
+
+#### Grassetto e corsivo
+
+- Grassetto: \*\* o \_\_ attorno al testo;
+- Corsivo: \* o \_ attorno al testo;
+- Grassetto e corsivo: \*\*\* o \_\_\_ attorno al testo;
+
+```java
+text t = "*Stringa* **con** ***formattazione***";
+```
+
+corrisponde in Markdown a:
+
+_Stringa_ **con** **_formattazione_**
+
+#### Testo cancellato e evidenziato
+
+- Testo cancellato: ~~ attorno al testo;
+- Testo evidenziato: == attorno al testo;
+
+```java
+text t = "~~Testo cancellato~~ e ==testo evidenziato==";
+```
+
+corrisponde in Markdown a:
+
+~~Testo cancellato~~ e <mark>testo evidenziato</mark>
+
+#### Pedici e apici
+
+- Pedice: \~ attorno al pedice;
+- Apice: \^ attorno all'apice;
+
+```java
+text t1 = "Formula bruta del glucosio: C ~6~ H ~12~ O ~6~";
+text t2 = "Isotopi dell'idrogeno: prozio ^1^H, deuterio ^2^H, trizio ^3^H";
+
+// gli spazi attorno ai simboli ~ e ^ non sono necessari
+```
+
+corrispondono in Markdown a:
+
+Formula bruta del glucosio: C<sub>6</sub> H<sub>12</sub> O<sub>6</sub>
+
+Isotopi dell'idrogeno: prozio <sup>1</sup>H, deuterio <sup>2</sup>H, trizio <sup>3</sup>H
 
 ## Variabili lista
 
@@ -441,6 +466,65 @@ Aggiungendo il simbolo speciale _`\_x_`\_ all'inizio della stringa viene visuali
 ### Lista (_list_)
 
 Rispetto a _`olist`_, _`ulist`_ e _`tlist`_, la _`list`_ non viene trasformata in una lista in Markdown ma è una lista "pura", una lista che viene solamente utilizzata per raccogliere un insieme di stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
+
+### Manipolazione di una lista
+
+MALT permette di aggiungere un elemento in coda e di rimuovere un elemento dato il suo indice senza dover riassegnare una lista completa.
+
+#### Aggiungere un elemento in coda (_push_)
+
+Utilizzando la funzione _`push(lst, el)`_ è possibile aggiungere la variabile primitiva testuale _`el`_ alla lista _`lst`_.
+
+```java
+
+olist animali = ["cane", "gatto"];
+text nuovo_elemento = "gallina";
+
+push(animali, nuovo_elemento);
+
+// animali ora contiene ["cane", "gatto", "gallina"]
+
+```
+
+#### Rimuovere un elemento (_remove_)
+
+Utilizzando la funzione _`remove(lst, idx, res)`_ è possibile rimuovere dalla lista _`lst`_ il valore di indice _`idx`_ e salvare l'elemento rimosso nella variabile _`res`_.
+
+Se si vuole rimuovere l'ultimo elemento senza specificare l'indice basta inserire il simbolo "\_" nel campo _`idx`_.
+
+Se non si vuole salvare l'elemento estratto basta usare il simbolo "\_" nel campo _`res`_.
+
+```java
+
+ulist animali = ["cane", "gatto", "gallina"];
+
+text rimosso;
+remove(animali, 1, rimosso);
+
+// animali ora ["cane", "gallina"] e rimosso contiene "gatto"
+
+```
+
+```java
+
+ulist animali = ["cane", "gatto", "gallina"];
+
+text rimosso;
+remove(animali, _, rimosso);  // rimuovo l'ultimo elemento
+
+// animali ora ["cane", "gatto"] e rimosso contiene "gallina"
+
+```
+
+```java
+
+ulist animali = ["cane", "gatto", "gallina"];
+
+remove(animali, _, _);  // rimuovo l'ultimo elemento e non lo salvo
+
+// animali ora ["cane", "gatto"]
+
+```
 
 ## Variabili multimediali
 
