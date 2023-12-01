@@ -43,10 +43,10 @@ export default function MaltApp() {
   const [response, setResponse] = useState('');
 
   const [showGlobalTable, setShowGlobalTable] = useState(false);
-  const [showFunctionsTable, setShowFunctionsTable] = useState(false);
+  const [showLocalTables, setShowLocalTables] = useState(false);
 
   const [globalTable, setGlobalTable] = useState({});
-  const [functionsTable, setFunctionsTable] = useState({});
+  const [localTables, setLocalTables] = useState({});
 
   function cleanPage() {
     setFile(undefined);
@@ -56,9 +56,9 @@ export default function MaltApp() {
     setIsFileError(false);
     setResponse('');
     setGlobalTable({});
-    setFunctionsTable({});
+    setLocalTables({});
     setShowGlobalTable(false);
-    setShowFunctionsTable(false);
+    setShowLocalTables(false);
   }
 
   function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -103,7 +103,7 @@ export default function MaltApp() {
       // clean data from previous response
       setResponse('');
       setGlobalTable({});
-      setFunctionsTable({});
+      setLocalTables({});
       // setShowGlobalTable(false);
       // setShowFunctionsTable(false);
 
@@ -131,7 +131,7 @@ export default function MaltApp() {
       setIsLoading(false);
       setResponse(data.message);
       setGlobalTable(data.globalTable);
-      setFunctionsTable(data.functionsTable);
+      setLocalTables(data.localTables);
     } catch (e) {
       setIsLoading(false);
       setIsApiError(true);
@@ -148,7 +148,7 @@ export default function MaltApp() {
     if (isGlobalTable) {
       setShowGlobalTable(value);
     } else {
-      setShowFunctionsTable(value);
+      setShowLocalTables(value);
     }
   };
 
@@ -274,19 +274,19 @@ export default function MaltApp() {
             label='Mostra Tabella Globale'
           />
         )}
-        {Object.keys(functionsTable).length != 0 && (
+        {Object.keys(localTables).length != 0 && (
           <FormControlLabel
             control={
               <Checkbox
                 onChange={(e) => handleCheckbox(e, false)}
-                checked={showFunctionsTable}
+                checked={showLocalTables}
               />
             }
             label='Mostra Tabelle Locali'
           />
         )}
         {showGlobalTable && <GlobalTable data={globalTable} />}
-        {showFunctionsTable && <FunctionsTable data={functionsTable} />}
+        {showLocalTables && <FunctionsTable data={localTables} />}
       </Container>
     </ThemeProvider>
   );

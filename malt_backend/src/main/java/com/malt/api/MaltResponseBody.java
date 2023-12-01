@@ -7,25 +7,25 @@ import com.malt.grammar.compiler.util.VarDescriptor;
 public class MaltResponseBody {
     private String message;
     private Hashtable<String, VarDescriptor> globalTable;
-    private Hashtable<String, Hashtable<String, VarDescriptor>> functionsTable;
+    private Hashtable<String, Hashtable<String, VarDescriptor>> localTables;
 
     public MaltResponseBody() {
         this.message = "";
         this.globalTable = new Hashtable<>();
-        this.functionsTable = new Hashtable<>();
+        this.localTables = new Hashtable<>();
     }
 
     public MaltResponseBody(String message) {
         this.message = message;
         this.globalTable = new Hashtable<>();
-        this.functionsTable = new Hashtable<>();
+        this.localTables = new Hashtable<>();
     }
 
     public MaltResponseBody(String message, Hashtable<String, VarDescriptor> globalTable,
-            Hashtable<String, Hashtable<String, VarDescriptor>> functionsTable) {
+            Hashtable<String, Hashtable<String, VarDescriptor>> localTables) {
         this.message = message;
         this.globalTable = globalTable;
-        this.functionsTable = functionsTable;
+        this.localTables = localTables;
     }
 
     public void setMessage(String message) {
@@ -41,14 +41,14 @@ public class MaltResponseBody {
     }
 
     public Hashtable<String, VarDescriptor> getGlobalTable() {
-        return globalTable;
+        return this.globalTable;
     }
 
-    public void setFunctionsTable(Hashtable<String, Hashtable<String, VarDescriptor>> functionsTable) {
-        this.functionsTable = functionsTable;
+    public void setLocalTables(Hashtable<String, Hashtable<String, VarDescriptor>> localTables) {
+        this.localTables = localTables;
     }
 
-    public Hashtable<String, Hashtable<String, VarDescriptor>> getFunctionsTable() {
-        return functionsTable;
+    public Hashtable<String, Hashtable<String, VarDescriptor>> getLocalTables() {
+        return this.localTables;
     }
 }
