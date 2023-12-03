@@ -852,7 +852,7 @@ class ClasseEsempio {
 In una classe si possono definire campi e metodi. I campi non sono altro che variabili locali alla classe e quindi visibili solo all'interno di essa.
 I metodi sono delle funzioni legate alla classe. Le variabili definite al loro interno seguono le stesse regole di visibilità di una normale funzione.
 
-I metodi hanno inoltre accesso ai campi ma sono visibili globalmente e quindi possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.
+I metodi hanno accesso ai campi ma i primi sono visibili globalmente e possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.
 
 Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave _this_ seguita dal nome del metodo. Ne viene riportato un esempio
 
@@ -866,12 +866,14 @@ class Obj {
     return tx;
   }
 
-  this.print(txlocal,tllocal);  // chiama la funzione print sopra
+  this.print(txlocal,tllocal);  // chiamata all'interno della stessa classe
+                                // del metodo print
 }
 
 text txglobal;
 
-this.print(txglobal, txglobal);  // ERRORE!, non siamo all'interno della classe del metodo print
+this.print(txglobal, txglobal);  // ERRORE!, non siamo all'interno
+                                 // della classe del metodo print
 ```
 
 Invece, nel caso in cui si volesse chiamare il metodo all'esterno della classe in cui è stato definito, la chiamata prevede l'utilizzo del nome della classe seguito del nome del metodo. Un esempio di questa chiamata è riportato di seguito:
