@@ -61,14 +61,14 @@ Per poter eseguire il codice MALT è stata predisposta un’interfaccia web in c
 
 # Installazione
 
-Per installare ed eseguire l’ambiente che permette di eseguire il codice MALT sono disponibili diverse alternative: l'esecuzione in modalità sviluppatore direttamente dagli script contenuti nel codice sorgente oppure l'esecuzione dell'ambiente pronto alla produzione tramite container Docker di immagini già costruite e pronte da utilizzare.
+Per installare ed eseguire l’ambiente che permette di eseguire il codice MALT sono disponibili diverse alternative: l'esecuzione in modalità sviluppatore direttamente dai script contenuti nel codice sorgente oppure l'esecuzione dell'ambiente pronto alla produzione tramite container Docker di immagini già costruite e pronte da utilizzare.
 
 ## Esecuzione da codice sorgente
 
 Il metodo piu semplice per utilizzare l'ambiente è quello di eseguire gli script utilizzati per provare il programma durante la fase di sviluppo. Questa modalità però non permette di simulare un ambiente reale con tutte le ottimizzazioni che i framework usano dopo aver eseguito il "build".
 Il programma si divide in due parti: analizzatore (back-end) e interfaccia (front-end).
 
-> Per il front-end è stato utilizzato Next.js che richiede l'installazione di Node.js e di npm sul sistema. Per scaricare Node.js basta andare a [questo indirizzo](https://nodejs.org/en/download). L'installazione di Node.js solitamente include già npm.
+> Per il front-end è stato utilizzato Next.js che richiede l'installazione di Node.js e di npm sul sistema. Per scaricare Node.js basta andare a [questo indirizzo](https://nodejs.org/en/download). L'installazione di Node.js solitamente già include npm.
 
 Per eseguire il back-end basta entrare nella cartella "malt_backend" e lanciare il comando
 
@@ -124,7 +124,8 @@ Nei seguenti capitoli verranno esposte le funzionalità del linguaggio in ordine
 In MALT sono presenti alcuni vincoli e limitazioni:
 
 - le funzioni, le classi e i metodi delle classi vengono eseguiti nel momento in cui vengono definiti e non nel momento delle loro chiamate;
-- i cicli vengono eseguiti soltanto per un'iterazione e non per tutte le iterazioni che soddisfano la condizione del ciclo stesso.
+- i cicli vengono eseguiti soltanto per un'iterazione e non per tutte le iterazioni che soddisfano la condizione del ciclo stesso;
+- non è ancora disponibile la generazione del testo Markdown.
 
 ## Variabili
 
@@ -173,7 +174,7 @@ MALT permette di inserire sia commenti su un'unica riga sia commenti multilinea.
 Nel primo caso la notazione è:
 
 ```java
-// commenti...
+// commento...
 ```
 
 Invece nel caso di commenti multilinea serve scrivere:
@@ -234,7 +235,7 @@ Le stringhe devono essere racchiuse da doppie virgolette (").
 
 L'aggettivo "primitive" si riferisce al fatto che questi tipi possono contenere una ed una sola stringa di testo e non ad esempio una lista di stringhe o una tabella che contiene stringhe.
 
-I tipi delle variabili primitive testuali sono le seguenti:
+I tipi delle variabili primitive testuali sono i seguenti:
 
 - `text`
 - `title`
@@ -264,8 +265,6 @@ Verranno ora presentati in dettaglio questi tipi.
 
 _`text`_ rappresenta del testo semplice, tutto quello che non è un titolo, una tabella, un'immagine, un codeblock...
 
-In un _`text`_ possiamo anche eseguire la formattazione del testo usando la stessa sintassi di Markdown.
-
 ### Titolo e varianti
 
 I tipi _`title`_, _`s1title`_, _`s2title`_, _`s3title`_, _`s4title`_, _`s5title`_ fanno parte della categoria dei titoli.
@@ -283,7 +282,7 @@ Tra MALT e Markdown c'è la seguente corrispondenza:
 
 #### Identificativo del titolo
 
-È inoltre possibile aggiungere un identificativo al titolo inserendo {`{#id}`} tra il nome della variabile e il simbolo "=" come in questo esempio:
+È possibile aggiungere un identificativo al titolo inserendo {`{#id}`} tra il nome della variabile e il simbolo "=" come in questo esempio:
 
 ```java
 s1title titolo {#titolo} = "Titolo con identificativo";
@@ -331,11 +330,11 @@ codeblock cb = "
 ";
 ```
 
-senza ovviamente utilizzare il syntax highlighting.
+senza ovviamente sfruttare il syntax highlighting.
 
 ### Concatenazione di variabili primitive testuali
 
-In MALT è possibile eseguire la concatenazione di più variabili primitive testali (sia tramite il nome di queste variabili sia tramite il loro valore) durante un assegnamento seguendo la notazione del seguente esempio:
+In MALT è possibile eseguire la concatenazione di più variabili primitive testuali (sia tramite il nome di queste variabili sia tramite il loro valore) durante un assegnamento seguendo la notazione del seguente esempio:
 
 ```java
 text t1 = ("zero" + "zero"); // t1 vale "zero zero"
@@ -347,13 +346,12 @@ blockquote p = "tre";
 s3title t3 = (s + p); // t3 vale "uno tre"
 // tutti i tipi primitivi testuali possono essere utilizzati in una concatenazione
 // MALT converte autometicamente i tipi
-// Ulteriori dettagli sulla conversione dei tipi è spiegata nell'apposito paragrafo
-// più avanti
+// Ulteriori dettagli sulla conversione dei tipi è spiegata nell'apposito paragrafo più avanti
 ```
 
 ### Formattazione di variabili primitive testuali
 
-Il valore delle variabili primitive testuali può essere formattato seguendo le regole di Markdown.
+Il valore delle variabili primitive testuali può essere formattato seguendo le stesse regole di Markdown.
 
 #### Grassetto e corsivo
 
@@ -469,7 +467,7 @@ in Markdown viene trasformato in:
 
 Automaticamente, i valori della lista sono convertiti in righe senza spunta.
 
-Aggiungendo il simbolo speciale _`\_x_`\_ all'inizio della stringa viene visualizzata la spunta.
+Aggiungendo il simbolo speciale `_x_` all'inizio della stringa viene visualizzata la spunta.
 
 ### Lista (_list_)
 
@@ -477,7 +475,7 @@ Rispetto a _`olist`_, _`ulist`_ e _`tlist`_, la _`list`_ non viene trasformata i
 
 ### Manipolazione di una lista
 
-MALT permette di aggiungere un elemento in coda e di rimuovere un elemento dato il suo indice senza dover riassegnare una lista completa.
+MALT permette di aggiungere un elemento in coda e di rimuovere un elemento dato il suo indice.
 
 #### Aggiungere un elemento in coda (_push_)
 
@@ -509,7 +507,7 @@ ulist animali = ["cane", "gatto", "gallina"];
 text rimosso;
 remove(animali, 1, rimosso);
 
-// animali ora ["cane", "gallina"] e rimosso contiene "gatto"
+// animali ora contiene ["cane", "gallina"] e rimosso contiene "gatto"
 
 ```
 
@@ -520,7 +518,7 @@ ulist animali = ["cane", "gatto", "gallina"];
 text rimosso;
 remove(animali, _, rimosso);  // rimuovo l'ultimo elemento
 
-// animali ora ["cane", "gatto"] e rimosso contiene "gallina"
+// animali ora contiene ["cane", "gatto"] e rimosso contiene "gallina"
 
 ```
 
@@ -530,13 +528,13 @@ ulist animali = ["cane", "gatto", "gallina"];
 
 remove(animali, _, _);  // rimuovo l'ultimo elemento e non lo salvo
 
-// animali ora ["cane", "gatto"]
+// animali ora contiene ["cane", "gatto"]
 
 ```
 
 ## Variabili multimediali
 
-Le variabili multimediali sono tre tipi di variabili che permettono di aggiungere elementi extra al documento Markdown: link, immagini e tabelle.
+Le variabili multimediali sono tre tipi di variabili che permettono di aggiungere tre nuovi contenuti al documento Markdown: tabelle, link e immagini.
 
 ### Tabella (_table_)
 
@@ -556,6 +554,7 @@ che viene traformata in Markdown come:
 La dichiarazione è simile a quanto visto fino ad ora: prima dell'uguale viene dichiarata una variabile _`tabella`_ di tipo _`table`_.
 
 Il valore assegnato è invece composto da due parti.
+
 La prima parte è una lista che deve contenere un numero di specificatori pari al numero di colonne della tabella.
 Gli specificatori descrivono come devono essere allineati i testi all'interno delle celle della colonna corrispondente.
 
@@ -566,6 +565,8 @@ Gli specificatori sono 3:
 | `$l`          | Allineamento a sinistra |
 | `$c`          | Allineamento al centro  |
 | `$r`          | Allineamento a destra   |
+
+> Questa prima parte è interamente opzionale. Se non viene specificata, viene utilizzato l'allineamento a sinistra per tutte le celle della tabella.
 
 La seconda parte invece descrive il contenuto della tabella. Tra le parentesi tonde vengono scritte tante liste quante sono le righe della tabella ed ogni lista è lunga tanto quanto il numero di colonne della tabella.
 La prima lista corrisponde all'intestazione della tabella.
@@ -609,7 +610,7 @@ Il secondo parametro permette di specificare una discalia dell'immagine.
 
 ## Format
 
-In MALT è stato introdotto un nuovo tipo di istruzione che consente di formattare diverse parole presenti nello stesso testo in base a diversi specificatori. Un esempio di questa istruzione è:
+In MALT è stato introdotto un nuovo tipo di istruzione che consente di inserire testo che può essere formattato diversamente in base ai specificatori utilizzati. Un esempio di questa istruzione è:
 
 ```java
 text str = "MALT è %i nuovo %b di programmazione.";
@@ -622,7 +623,7 @@ che consente di ottenere:
 
 MALT è _un_ nuovo **linguaggio** di programmazione.
 
-Nella format del precedente esempio _`str`_ rappresenta la stringa da formattare, mentre _`res`_ corrisponde alla variabile in cui salvare il risultato di format. Invece _`a`_ e _`b`_ sono le variabili che vanno sostituite agli specificatori presenti in _`str`_ seguendo l'ordine in cui sono riportati.
+Nella format del precedente esempio, _`res`_ corrisponde alla variabile in cui salvare il risultato di format mentre _`str`_ rappresenta la stringa da formattare (che contiene gli specificatori). Invece _`a`_ e _`b`_ sono le variabili che vanno sostituite ai specificatori presenti in _`str`_ seguendo l'ordine in cui sono riportati.
 
 > Il numero di specificatori nella stringa da formattare deve corrispondere al numero di variabili riportati nella format (esclusi gli argomenti del risultato e della stringa da formattare).
 
@@ -674,7 +675,7 @@ table tabella2 = foto3;     // ERRORE: tabella2 (tipo: table) e foto3 (tipo: img
 
 ## Cicli
 
-In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripeteono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni corrispondono alla lunghezza della lista. Il contatore e la lista vanno passati nella codnzione nei rispettivi casi.
+In MALT è possibile inserire cicli, in particolare cicli for. Essi possono essere strutturati in due modi differenti: nel primo caso si ripetono le istruzioni in base ad un certo contatore che rappresenta il numero delle iterazioni, mentre nel secondo caso le iterazioni corrispondono alla lunghezza della lista.
 
 ### Ciclo for
 
@@ -794,7 +795,7 @@ esempio(tx1,tl1); // chiamata della funzione "esempio"
 
 Anche per le funzioni, così come per i cicli for visti prima, viene creato un blocco. Lo scope delle variabili dichiarate all'interno della funzione si estende a partire dalla dichiarazione fino all'ultima istruzione del blocco.
 
-Di seguito viene ostratao unesempio:
+Di seguito viene mostrato un esempio:
 
 ```java
 // inizio blocco globale
@@ -860,7 +861,7 @@ class ClasseEsempio {
 In una classe si possono definire campi e metodi. I campi non sono altro che variabili locali alla classe e quindi visibili solo all'interno di essa.
 I metodi sono delle funzioni legate alla classe. Le variabili definite al loro interno seguono le stesse regole di visibilità di una normale funzione.
 
-I metodi hanno accesso ai campi ma i primi sono visibili globalmente e possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.
+I metodi hanno accesso ai campi della classe ma i primi sono visibili globalmente e possono essere chiamati ovunque nel codice utilizzando la dot notation in due modi diversi in base alla posizione della chiamata: all'interno della classe del metodo o esternamente.
 
 Nel caso in cui si volesse chiamare il metodo all'interno della classe in cui è stato definito, la chiamata prevede l'utilizzo della parola chiave _this_ seguita dal nome del metodo. Ne viene riportato un esempio
 
