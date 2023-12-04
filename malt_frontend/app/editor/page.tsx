@@ -21,6 +21,13 @@ import Link from 'next/link';
 import GlobalTable from '../components/GlobalTable';
 import FunctionsTable from '../components/FunctionsTable';
 import { CleaningServices, Delete, FileOpen } from '@mui/icons-material';
+import NavBar from '../components/NavBar';
+
+enum Page {
+  Home,
+  Editor,
+  Guide,
+}
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -162,9 +169,8 @@ export default function MaltApp() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Container maxWidth='md'>
-        <Link href='/' style={{ textDecoration: 'none', color: 'white' }}>
-          <h1> MALT </h1>
-        </Link>
+        <NavBar page={Page.Editor} />
+
         <p>
           Per eseguire MALT serve caricare un file testuale oppure scrivere
           direttamente un testo.

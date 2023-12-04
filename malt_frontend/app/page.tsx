@@ -6,6 +6,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
 import monitorImage from '../public/monitor_image.jpg';
+import NavBar from './components/NavBar';
+import Page from './components/Page';
 
 // TODO: cambiare freccia con una bianca
 
@@ -40,7 +42,8 @@ for(idx, len(nomeProdotto)){
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Container maxWidth={'lg'}>
-        <h1> MALT </h1>
+        <NavBar page={Page.Home} />
+        {/* <h1> MALT </h1> */}
         <Box height={20}></Box>
 
         <Image
@@ -50,25 +53,26 @@ for(idx, len(nomeProdotto)){
           style={{ width: '100%', height: 'auto' }}
         />
         <Box height={20}></Box>
-        <p>
-          MALT è un linguaggio che consente di ottenere un file Markdown a
-          partire da un nuovo linguaggio procedurale.
-        </p>
-        <p>
-          Vuoi creare un pdf che contiene una tabella o una lunga lista di
-          prodotti contenuti nel tuo database? Se la risposta è sì sei nel posto
-          giusto!
-        </p>
-        <p>
-          MALT ti consente di iterare liste come nei classici linguaggi di
-          programmazione (C/C++, Java, Python...) per produrre liste markdown (e
-          molto altro) generate a run-time a partire dai dati forniti.
-        </p>
+        <Box textAlign={'center'}>
+          <p style={{ color: '#f1af09', fontStyle: 'italic' }}>
+            Vuoi creare un pdf che contiene una tabella o una lunga lista di
+            prodotti contenuti nel tuo database? Se la risposta è sì, sei nel
+            posto giusto!
+          </p>
+          <p style={{ fontStyle: 'italic' }}>
+            MALT è un linguaggio che consente di ottenere un file Markdown a
+            partire da un nuovo linguaggio procedurale. Inoltre ti consente di
+            iterare liste come nei classici linguaggi di programmazione (C/C++,
+            Java, Python...) per produrre liste Markdown (e molto altro)
+            generate a run-time a partire dai dati forniti.
+          </p>
+        </Box>
+        <Box height={10}></Box>
         <p>
           Nell&apos;esempio qui sotto viene mostrato come iterare due liste e
           generare una lista non ordinata sfruttando i dati appena letti.
         </p>
-        <Box height={50}></Box>
+        <Box height={20}></Box>
         <Grid
           container
           alignItems={'center'}
