@@ -9,6 +9,7 @@
   - [Esecuzione da codice sorgente](#esecuzione-da-codice-sorgente)
   - [Installazione tramite Docker](#installazione-tramite-docker)
 - [Linguaggio MALT](#linguaggio-malt)
+  - [Vincoli e limitazioni](#vincoli-e-limitazioni)
   - [Variabili](#variabili)
   - [Commenti](#commenti)
   - [Tipi](#tipi)
@@ -117,6 +118,13 @@ L'installazione dell'ambiente è completata ed ora sarà possibile utilizzare l'
 # Linguaggio MALT
 
 Nei seguenti capitoli verranno esposte le funzionalità del linguaggio in ordine di difficoltà partendo dalle variabili e arrivando alla fine ad utilizzare tutto quello che serve per affrontare i casi d'uso più comuni.
+
+## Vincoli e limitazioni
+
+In MALT sono presenti alcuni vincoli e limitazioni:
+
+- le funzioni, le classi e i metodi delle classi vengono eseguiti nel momento in cui vengono definiti e non nel momento delle loro chiamate;
+- i cicli vengono eseguiti soltanto per un'iterazione e non per tutte le iterazioni che soddisfano la condizione del ciclo stesso.
 
 ## Variabili
 
