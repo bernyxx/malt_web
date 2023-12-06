@@ -20,11 +20,6 @@ const darkTheme = createTheme({
   },
 });
 
-const aStyle = {
-  color: 'white',
-  'text-decoration': 'none',
-};
-
 const page = () => {
   return (
     <ThemeProvider theme={darkTheme}>
@@ -32,6 +27,9 @@ const page = () => {
       <Container maxWidth='lg'>
         <NavBar page={Page.Guide} />
         <Box height={20} />
+
+        <meta charSet='UTF-8' />
+        <title>Guida Utente MALT</title>
         <style
           dangerouslySetInnerHTML={{
             __html:
@@ -67,7 +65,6 @@ const page = () => {
               '\n.task-list-item {\n    list-style-type: none;\n}\n\n.task-list-item-checkbox {\n    margin-left: -20px;\n    vertical-align: middle;\n    pointer-events: none;\n}\n',
           }}
         />
-
         <h1 id='guida-utente-malt'>Guida Utente MALT</h1>
         <h2 id='sommario'>Sommario</h2>
         <ul>
@@ -201,6 +198,11 @@ const page = () => {
                   <li>
                     <a href='#lista-list'>
                       Lista (<em>list</em>)
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#accedere-ad-un-elemento-di-una-lista'>
+                      Accedere ad un elemento di una lista
                     </a>
                   </li>
                   <li>
@@ -1288,6 +1290,60 @@ const page = () => {
           una lista che viene solamente utilizzata per raccogliere un insieme di
           stringhe da usare all'interno del linguaggio in funzioni, cicli ecc...
         </p>
+        <h3 id='accedere-ad-un-elemento-di-una-lista'>
+          Accedere ad un elemento di una lista
+        </h3>
+        <p>
+          Per recuperare un particolare elemento all'interno della lista basta
+          usare la notazione{' '}
+          <em>
+            <code>lista[idx]</code>
+          </em>{' '}
+          dove{' '}
+          <em>
+            <code>lista</code>
+          </em>{' '}
+          è la lista da cui estrarre l'elemento e{' '}
+          <em>
+            <code>idx</code>
+          </em>{' '}
+          è l'indice dell'elemento da estrarre considerando che l'indice del
+          primo elemento è 0 e gli altri seguono in ordine crescente. Ecco un
+          breve esempio:
+        </p>
+        <pre>
+          <code className='language-java'>
+            {'\n'}
+            <span className='hljs-type'>olist</span>{' '}
+            <span className='hljs-variable'>animali</span>{' '}
+            <span className='hljs-operator'>=</span> [
+            <span className='hljs-string'>"cane"</span>,{' '}
+            <span className='hljs-string'>"gatto"</span>];{'\n'}
+            {'\n'}
+            <span className='hljs-type'>text</span>{' '}
+            <span className='hljs-variable'>primo_elemento</span>{' '}
+            <span className='hljs-operator'>=</span> animali[
+            <span className='hljs-number'>0</span>];{'   '}
+            <span className='hljs-comment'>// "cane"</span>
+            {'\n'}
+            <span className='hljs-type'>text</span>{' '}
+            <span className='hljs-variable'>secondo_elemento</span>{' '}
+            <span className='hljs-operator'>=</span> animali[
+            <span className='hljs-number'>1</span>];{' '}
+            <span className='hljs-comment'>// "gatto"</span>
+            {'\n'}
+            {'\n'}
+            <span className='hljs-type'>text</span>{' '}
+            <span className='hljs-variable'>elemento_illegale</span>{' '}
+            <span className='hljs-operator'>=</span> animali[
+            <span className='hljs-number'>2</span>]{' '}
+            <span className='hljs-comment'>
+              // ERRORE: la lista ha solo due valori, l'indice 2 non esiste
+            </span>
+            {'\n'}
+            {'\n'}
+          </code>
+        </pre>
         <h3 id='manipolazione-di-una-lista'>Manipolazione di una lista</h3>
         <p>
           MALT permette di aggiungere un elemento in coda e di rimuovere un
