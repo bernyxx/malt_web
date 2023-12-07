@@ -9,8 +9,6 @@ import monitorImage from '../public/monitor_image.jpg';
 import NavBar from './components/NavBar';
 import Page from './components/Page';
 
-// TODO: cambiare freccia con una bianca
-
 const page = () => {
   const darkTheme = createTheme({
     palette: {
