@@ -1346,7 +1346,7 @@ const page = () => {
           <li className='task-list-item enabled'>
             <input
               className='task-list-item-checkbox'
-              defaultChecked=''
+              defaultChecked={true}
               type='checkbox'
             />
             lavorare
