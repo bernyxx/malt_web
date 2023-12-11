@@ -109,6 +109,8 @@ export default function MaltApp() {
     try {
       // clean data from previous response
       setResponse('');
+      setShowGlobalTable(false);
+      setShowLocalTables(false);
       setGlobalTable({});
       setLocalTables({});
       // setShowGlobalTable(false);
