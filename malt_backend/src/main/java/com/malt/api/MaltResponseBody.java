@@ -4,6 +4,7 @@ import java.util.Hashtable;
 
 import com.malt.grammar.compiler.util.VarDescriptor;
 
+// classe che descrive la risposta del server al client
 public class MaltResponseBody {
     private String message;
     private Hashtable<String, VarDescriptor> globalTable;

@@ -12,6 +12,7 @@ import com.malt.grammar.compiler.util.ParserResult;
 import com.malt.grammar.launchers.MaltStringScannerLauncher;
 import com.malt.grammar.launchers.MaltStringParserLauncher;
 
+// rest api controller
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
@@ -20,6 +21,7 @@ public class ApiController {
     MaltStringScannerLauncher msl = new MaltStringScannerLauncher();
     MaltStringParserLauncher mpl = new MaltStringParserLauncher();
 
+    // endpoint per il lexer
     @PostMapping("/lexer")
     public MaltResponseBody launchLexer(@RequestBody MaltRequestBody body) throws IOException {
         String result = msl.runScanner(body.getContent());
@@ -27,6 +29,7 @@ public class ApiController {
 
     }
 
+    // endpoint per il parser
     @PostMapping("/parser")
     public MaltResponseBody launchParser(@RequestBody MaltRequestBody body) throws IOException {
         ParserResult result = mpl.runParser(body.getContent());

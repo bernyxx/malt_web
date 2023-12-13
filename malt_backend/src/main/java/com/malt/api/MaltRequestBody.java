@@ -1,5 +1,6 @@
 package com.malt.api;
 
+// classe che descrive il body spedito nella richiesta da parte del client
 public class MaltRequestBody {
 
     private String content;
